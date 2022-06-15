@@ -10,7 +10,7 @@
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"
         AllowsTransparency="True">
-    <Border background="#1C1526"
+    <Border Background="#1C1526"
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -27,7 +27,37 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="#B58AFB"
-                       FontSize="36"/>
+                       FontSize="40"
+                       Margin="20,25,0,0"/>
+            
+            <StackPanel Grid.Row="1">
+                
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="#B58AFB"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+                
+                <RadioButton Content="Discovery"
+                             Height="50"
+                             Foreground="#B58AFB"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+                
+                <RadioButton Content="Features"
+                             Height="50"
+                             Foreground="#B58AFB"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+            </StackPanel>
+            
+            <TextBox Width="250"
+                       Height="40"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="5"
+                       Grid.Column="1"
+                       Style="{StaticResource ModernTextbox}"/>
         </Grid>
         
         
