@@ -85,9 +85,6 @@
         <None Include="Veat-UAM-logo.png" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include=".gitignore" />
-    </ItemGroup>
-    <ItemGroup>
       <Folder Include="Fonts" />
       <Folder Include="Images" />
       <Folder Include="MVVM\Model" />
