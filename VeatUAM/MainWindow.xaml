@@ -22,6 +22,12 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            
+            <TextBlock Text="Veat UAM"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="#B58AFB"
+                       FontSize="36"/>
         </Grid>
         
         
