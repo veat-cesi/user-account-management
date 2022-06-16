@@ -34,7 +34,8 @@
                        HorizontalAlignment="Center"
                        Foreground="#B58AFB"
                        FontSize="40"
-                       Margin="20,25,0,0"/>
+                       Margin="20,25,0,0"
+                       FontFamily="/Fonts/#Inter"/>
             
             <StackPanel Grid.Row="1">
                 
