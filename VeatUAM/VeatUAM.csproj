@@ -65,10 +65,15 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\TextBoxTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+        <Compile Include="MVVM\View\HomeView.xaml.cs">
+          <DependentUpon>HomeView.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
         </Compile>
@@ -90,8 +95,6 @@
       <Folder Include="Fonts" />
       <Folder Include="Images" />
       <Folder Include="MVVM\Model" />
-      <Folder Include="MVVM\View" />
-      <Folder Include="MVVM\ViewModel" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
