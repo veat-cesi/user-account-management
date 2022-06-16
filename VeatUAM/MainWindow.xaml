@@ -6,21 +6,20 @@
         xmlns:local="clr-namespace:VeatUAM"
         xmlns:viewModel="clr-namespace:VeatUAM.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="Veat - UAM" Height="600" Width="920"
-        WindowStyle="None"
+        Title="Veat UAM" Height="600" Width="920"
         ResizeMode="CanResizeWithGrip"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="#121212">
     
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
     
-    <Border Background="#1C1526"
+    <Border Background="#121212"
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="0"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             
@@ -29,48 +28,82 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <TextBlock Text="Veat UAM"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="#B58AFB"
-                       FontSize="40"
-                       Margin="20,25,0,0"
-                       FontFamily="/Fonts/#Inter"/>
-            
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="0"
+                        Background="#1D1D1D">
+                
+                <TextBlock Text="Veat UAM"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="#E1E1E1"
+                           FontSize="40"
+                           Margin="0,15,0,0"
+                           FontFamily="Fonts/#Poppins"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        Background="#1D1D1D">
                 
                 <RadioButton Content="Home"
                              Height="50"
-                             Foreground="#B58AFB"
+                             Foreground="#E1E1E1"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
-                             Command="{Binding HomeViewCommand}"/>
+                             Command="{Binding HomeViewCommand}"
+                             FontFamily="Fonts/#Poppins"/>
                 
-                <RadioButton Content="Discovery"
+                <RadioButton Content="Customers"
                              Height="50"
-                             Foreground="#B58AFB"
+                             Foreground="#E1E1E1"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DiscoveryViewCommand}"/>
+                             Command="{Binding DiscoveryViewCommand}"
+                             FontFamily="Fonts/#Poppins"/>
                 
-                <RadioButton Content="Features"
+                <RadioButton Content="Delivery"
                              Height="50"
-                             Foreground="#B58AFB"
+                             Foreground="#E1E1E1"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
+                
+                <RadioButton Content="Developers"
+                             Height="50"
+                             Foreground="#E1E1E1"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
+                
+                <RadioButton Content="Restaurants"
+                             Height="50"
+                             Foreground="#E1E1E1"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
+                
+                <RadioButton Content="Commercial"
+                             Height="50"
+                             Foreground="#E1E1E1"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
+                
+                <RadioButton Content="Technical"
+                             Height="50"
+                             Foreground="#E1E1E1"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
+                
+                <RadioButton Content="Logout"
+                             Height="50"
+                             Foreground="#A4A4A4"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             FontFamily="Fonts/#Poppins"/>
             </StackPanel>
             
-            <TextBox Width="250"
-                       Height="40"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="5"
-                       Grid.Column="1"
-                       Style="{StaticResource ModernTextbox}"/>
-            
             <ContentControl Grid.Row="1"
-                            Grid.Column="1"
+                            Grid.Column="3"
                             Margin="10"
                             Content="{Binding CurrentView}"/>
             

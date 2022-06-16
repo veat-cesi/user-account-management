@@ -102,6 +102,9 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Fonts\Inter.ttf" />
+      <Content Include="Fonts\Poppins.ttf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Images\csharp.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
