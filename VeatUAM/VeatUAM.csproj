@@ -65,13 +65,18 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\TextBoxTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+        <Compile Include="MVVM\View\DiscoveryView.xaml.cs">
+          <DependentUpon>DiscoveryView.xaml</DependentUpon>
+        </Compile>
         <Compile Include="MVVM\View\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>
         </Compile>
