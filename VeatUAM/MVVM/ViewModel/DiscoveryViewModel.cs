@@ -1,7 +1,7 @@
 namespace VeatUAM.MVVM.ViewModel
 {
-    public class DiscoveryViewModel
+    class DiscoveryViewModel
     {
-        
+        public string head = "Discovery";
     }
 }

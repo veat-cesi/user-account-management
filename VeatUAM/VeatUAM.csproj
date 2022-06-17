@@ -98,14 +98,14 @@
         <None Include="Veat-UAM-logo.ico" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="MVVM\Model" />
-    </ItemGroup>
-    <ItemGroup>
       <Content Include="Fonts\Inter.ttf" />
       <Content Include="Fonts\Poppins.ttf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="Images\csharp.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="MVVM\Model" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
