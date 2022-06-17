@@ -9,7 +9,11 @@ namespace VeatUAM.MVVM.ViewModel
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand DiscoveryViewCommand { get; set; }
         
+        public RelayCommand CustomerViewCommand { get; set; }
+        
         public HomeViewModel HomeVM { get; set; }
+        
+        public CustomerViewModel CustomerVM { get; set; }
         
         public DiscoveryViewModel DiscoveryVM { get; set; }
         
@@ -39,6 +43,7 @@ namespace VeatUAM.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             DiscoveryVM = new DiscoveryViewModel();
+            CustomerVM = new CustomerViewModel();
             CurrentView = HomeVM;
             CurrentHead = HomeVM.head;
 
@@ -48,10 +53,11 @@ namespace VeatUAM.MVVM.ViewModel
                 CurrentHead = HomeVM.head;
             });
             
-            DiscoveryViewCommand = new RelayCommand(o =>
+            CustomerViewCommand = new RelayCommand(o =>
             {
-                CurrentView = DiscoveryVM;
-                CurrentHead = DiscoveryVM.head;
+                
+                CurrentView = CustomerVM;
+                CurrentHead = CustomerVM?.head;
             });
         }
     }

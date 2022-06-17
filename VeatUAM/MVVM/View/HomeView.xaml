@@ -7,135 +7,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:VeatUAM.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Background="Brown">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock
-                FontSize="28"
-                Foreground="White"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,20"
-                Text="Discover" />
-
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,0,0,10">
-                <Border Height="200" Width="400">
-
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="1,2" StartPoint="0,0">
-                            <GradientStop Color="#B58AFB" Offset="0.0" />
-                            <GradientStop Color="#1C1526" Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-
-                    <Border.Clip>
-                        <RectangleGeometry
-                            RadiusX="10"
-                            RadiusY="10"
-                            Rect="0,0,400,200" />
-                    </Border.Clip>
-
-                    <Grid>
-                        <StackPanel>
-                            <TextBlock
-                                FontSize="28"
-                                Foreground="White"
-                                Margin="20,10,10,0"
-                                Text="World leader&#x0a;in global finance" />
-
-                            <TextBlock
-                                FontSize="18"
-                                Foreground="White"
-                                Margin="20,10,10,0"
-                                Text="Get started today!" />
-
-                        </StackPanel>
-
-                        <Image
-                            Height="200"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,-25,-50"
-                            RenderTransformOrigin="0.5,0.5"
-                            Source="/Images/csharp.png"
-                            VerticalAlignment="Bottom"
-                            Width="200">
-                            <Image.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform />
-                                    <SkewTransform />
-                                    <RotateTransform Angle="-15.169" />
-                                    <TranslateTransform />
-                                </TransformGroup>
-                            </Image.RenderTransform>
-                        </Image>
-
-                    </Grid>
-                </Border>
-
-                <Border
-                    CornerRadius="10"
-                    Height="200"
-                    Margin="45,0,0,0"
-                    Width="200">
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="1,2" StartPoint="0,0">
-                            <GradientStop Color="#008AFB" Offset="0.0" />
-                            <GradientStop Color="#001526" Offset="1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                </Border>
-            </StackPanel>
-
-            <StackPanel>
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="Margin" Value="15,0,0,0" />
-                    </Style>
-                </StackPanel.Resources>
-                <TextBlock
-                    FontSize="20"
-                    Foreground="White"
-                    HorizontalAlignment="Left"
-                    Margin="0,0,0,10"
-                    Text="Most watched" />
-
-                <StackPanel Orientation="Horizontal">
-                    <Border
-                        Background="Coral"
-                        CornerRadius="10"
-                        Height="150"
-                        Margin="0"
-                        Width="150" />
-
-                    <Border
-                        Background="CadetBlue"
-                        CornerRadius="10"
-                        Height="150"
-                        Width="150" />
-
-                    <Border
-                        Background="HotPink"
-                        CornerRadius="10"
-                        Height="150"
-                        Width="150" />
-
-                    <Border
-                        Background="LimeGreen"
-                        CornerRadius="10"
-                        Height="150"
-                        Width="150" />
-
-                </StackPanel>
-                <StackPanel />
-            </StackPanel>
-        </StackPanel>
+        <Image Grid.Row="0"
+               Source="/Images/home_w.png"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1"
+                   Text="Welcome {Username}"
+                   Foreground="#E1E1E1"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Margin="0,20,0,0"
+                   FontSize="44"></TextBlock>
     </Grid>
     
 </UserControl>

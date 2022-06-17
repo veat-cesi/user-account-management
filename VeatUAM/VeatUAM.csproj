@@ -14,6 +14,7 @@
         <WarningLevel>4</WarningLevel>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <ApplicationIcon>Veat-UAM-logo.ico</ApplicationIcon>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,15 +66,21 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="MVVM\View\CustomerView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\TextBoxTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="MVVM\Model\CustomerModel.cs" />
+        <Compile Include="MVVM\ViewModel\CustomerViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DiscoveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+        <Compile Include="MVVM\View\CustomerView.xaml.cs">
+          <DependentUpon>CustomerView.xaml</DependentUpon>
+        </Compile>
         <Compile Include="MVVM\View\DiscoveryView.xaml.cs">
           <DependentUpon>DiscoveryView.xaml</DependentUpon>
         </Compile>
@@ -103,9 +110,10 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <Content Include="Images\csharp.png" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="MVVM\Model" />
+      <Content Include="Images\home_b.png" />
+      <Content Include="Images\home_w.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
