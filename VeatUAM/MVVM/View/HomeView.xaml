@@ -10,7 +10,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,14 +19,16 @@
         <Image Grid.Row="0"
                Source="/Images/home_w.png"
                VerticalAlignment="Center"
-               HorizontalAlignment="Center"/>
+               HorizontalAlignment="Center"
+               Stretch="Uniform"/>
         <TextBlock Grid.Row="1"
-                   Text="Welcome {Username}"
+                   Text="Welcome"
                    Foreground="#E1E1E1"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Center"
                    Margin="0,20,0,0"
-                   FontSize="44"></TextBlock>
+                   FontSize="44"
+                   FontFamily="/Fonts/#Poppins"></TextBlock>
     </Grid>
     
 </UserControl>

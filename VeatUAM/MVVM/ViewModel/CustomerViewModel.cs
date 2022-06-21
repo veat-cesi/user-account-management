@@ -26,37 +26,5 @@ namespace VeatUAM.MVVM.ViewModel
             get => _customersDevList;
             set => _customersDevList = value;
         }
-        
-        private ICommand _mUpdater;  
-        public ICommand UpdateCommand  
-        {  
-            get  
-            {  
-                if (_mUpdater == null)  
-                    _mUpdater = new Updater();  
-                return _mUpdater;  
-            }  
-            set  
-            {  
-                _mUpdater = value;  
-            }  
-        }  
-  
-        private class Updater : ICommand  
-        {
-
-            public bool CanExecute(object parameter)  
-            {  
-                return true;  
-            }  
-  
-            public event EventHandler CanExecuteChanged;  
-  
-            public void Execute(object parameter)  
-            {  
-  
-            }  
-            
-        }  
     }
 }

@@ -26,8 +26,7 @@
                                        HorizontalAlignment="Left"
                                        Margin="10,0,0,0"
                                        FontSize="11"
-                                       Foreground="DarkGray"
-                                       Grid.Column="1">
+                                       Foreground="DarkGray">
                                 
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">

@@ -120,7 +120,6 @@
             
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75"/>
-                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
@@ -133,9 +132,11 @@
                            Margin="0,0,0,0"
                            FontFamily="Fonts/#Poppins"/>
                 
-                <ContentControl Grid.Row="2"
+                <ContentControl Grid.Row="1"
                                 Margin="10"
                                 Content="{Binding CurrentView}"/>
+                
+                    
                 
             </Grid>
             

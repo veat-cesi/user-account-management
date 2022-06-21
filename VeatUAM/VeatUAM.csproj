@@ -69,6 +69,8 @@
         <Page Include="MVVM\View\CustomerView.xaml" />
         <Page Include="MVVM\View\DiscoveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
+        <Page Include="Theme\ButtonTheme.xaml" />
+        <Page Include="Theme\InputTextBoxTheme.xaml" />
         <Page Include="Theme\MenuButtonTheme.xaml" />
         <Page Include="Theme\TextBoxTheme.xaml" />
     </ItemGroup>
