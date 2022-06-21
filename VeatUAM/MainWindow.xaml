@@ -71,7 +71,7 @@
                                  Foreground="#E1E1E1"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
-                                 Command="{Binding DiscoveryViewCommand}"
+                                 Command="{Binding DeliveryViewCommand}"
                                  FontFamily="Fonts/#Poppins"/>
                     
                     <RadioButton Content="Developers"

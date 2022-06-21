@@ -67,6 +67,7 @@
             <SubType>Code</SubType>
         </Compile>
         <Page Include="MVVM\View\CustomerView.xaml" />
+        <Page Include="MVVM\View\DeliveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
         <Page Include="Theme\ButtonTheme.xaml" />
         <Page Include="Theme\InputTextBoxTheme.xaml" />
@@ -77,10 +78,14 @@
         <Compile Include="MVVM\Model\CustomerModel.cs" />
         <Compile Include="MVVM\Model\DeliveryModel.cs" />
         <Compile Include="MVVM\ViewModel\CustomerViewModel.cs" />
+        <Compile Include="MVVM\ViewModel\DeliveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
         <Compile Include="MVVM\View\CustomerView.xaml.cs">
           <DependentUpon>CustomerView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\View\DeliveryView.xaml.cs">
+          <DependentUpon>DeliveryView.xaml</DependentUpon>
         </Compile>
         <Compile Include="MVVM\View\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>
