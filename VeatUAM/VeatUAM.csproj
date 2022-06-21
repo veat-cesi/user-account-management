@@ -75,6 +75,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Model\CustomerModel.cs" />
+        <Compile Include="MVVM\Model\DeliveryModel.cs" />
         <Compile Include="MVVM\ViewModel\CustomerViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
         <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
