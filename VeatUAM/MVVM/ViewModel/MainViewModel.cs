@@ -15,7 +15,6 @@ namespace VeatUAM.MVVM.ViewModel
         
         public CustomerViewModel CustomerVM { get; set; }
         
-        public DiscoveryViewModel DiscoveryVM { get; set; }
         
         private object _currentView;
         private string _currentHead;
@@ -42,7 +41,6 @@ namespace VeatUAM.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
-            DiscoveryVM = new DiscoveryViewModel();
             CustomerVM = new CustomerViewModel();
             CurrentView = HomeVM;
             CurrentHead = HomeVM.head;
