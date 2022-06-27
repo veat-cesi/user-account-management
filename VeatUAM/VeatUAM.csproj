@@ -112,7 +112,6 @@
         <Compile Include="MVVM\Models\CustomerModel.cs" />
         <Compile Include="MVVM\Models\DeliveryModel.cs" />
         <Compile Include="MVVM\Models\EncryptedPasswordModel.cs" />
-        <Compile Include="MVVM\Models\UserModel.cs" />
         <Compile Include="MVVM\ViewModels\CustomerViewModel.cs" />
         <Compile Include="MVVM\ViewModels\DeliveryViewModel.cs" />
         <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
