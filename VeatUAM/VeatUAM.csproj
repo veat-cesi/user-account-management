@@ -76,6 +76,7 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Core\WpfSingleInstance.cs" />
         <Compile Include="LoginWindow.xaml.cs">
           <DependentUpon>LoginWindow.xaml</DependentUpon>
         </Compile>
@@ -147,7 +148,9 @@
       <Content Include="Assets\Fonts\Poppins.ttf" />
       <Content Include="Assets\Images\home_b.png" />
       <Content Include="Assets\Images\home_w.png" />
-      <Content Include="Assets\Images\Veat-UAM-logo.png" />
+      <Content Include="Assets\Images\Veat-UAM-logo.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Assets" />

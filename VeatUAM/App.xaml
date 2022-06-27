@@ -5,14 +5,17 @@
     xmlns:local="clr-namespace:VeatUAM"
     xmlns:view="clr-namespace:VeatUAM.MVVM.View"
     xmlns:viewModel="clr-namespace:VeatUAM.MVVM.ViewModel"
-    StartupUri="MainWindow.xaml">
+    xmlns:core="clr-namespace:VeatUAM.Core"
+    StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
-                <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
-                <ResourceDictionary Source="Theme/InputTextBoxTheme.xaml" />
-                <ResourceDictionary Source="Theme/ButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/InputTextBoxTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/ButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/VeatCloseWindowButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/VeatBasicButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
