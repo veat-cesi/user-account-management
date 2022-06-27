@@ -80,6 +80,7 @@
         <Compile Include="LoginWindow.xaml.cs">
           <DependentUpon>LoginWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="_Services\AuthenticationService.cs" />
         <Compile Include="_Services\PasswordEncoderService.cs" />
         <Page Include="Assets\Theme\ButtonTheme.xaml" />
         <Page Include="Assets\Theme\InputTextBoxTheme.xaml" />
@@ -103,26 +104,26 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Page Include="MVVM\View\CustomerView.xaml" />
-        <Page Include="MVVM\View\DeliveryView.xaml" />
-        <Page Include="MVVM\View\HomeView.xaml" />
+        <Page Include="MVVM\Views\CustomerView.xaml" />
+        <Page Include="MVVM\Views\DeliveryView.xaml" />
+        <Page Include="MVVM\Views\HomeView.xaml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="MVVM\Model\CustomerModel.cs" />
-        <Compile Include="MVVM\Model\DeliveryModel.cs" />
-        <Compile Include="MVVM\Model\EncryptedPasswordModel.cs" />
-        <Compile Include="MVVM\Model\UserModel.cs" />
-        <Compile Include="MVVM\ViewModel\CustomerViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\DeliveryViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
-        <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
-        <Compile Include="MVVM\View\CustomerView.xaml.cs">
+        <Compile Include="MVVM\Models\CustomerModel.cs" />
+        <Compile Include="MVVM\Models\DeliveryModel.cs" />
+        <Compile Include="MVVM\Models\EncryptedPasswordModel.cs" />
+        <Compile Include="MVVM\Models\UserModel.cs" />
+        <Compile Include="MVVM\ViewModels\CustomerViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\DeliveryViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\HomeViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\MainViewModel.cs" />
+        <Compile Include="MVVM\Views\CustomerView.xaml.cs">
           <DependentUpon>CustomerView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="MVVM\View\DeliveryView.xaml.cs">
+        <Compile Include="MVVM\Views\DeliveryView.xaml.cs">
           <DependentUpon>DeliveryView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="MVVM\View\HomeView.xaml.cs">
+        <Compile Include="MVVM\Views\HomeView.xaml.cs">
           <DependentUpon>HomeView.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs">
