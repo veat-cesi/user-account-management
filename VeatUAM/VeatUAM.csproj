@@ -36,10 +36,33 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+          <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
+        </Reference>
+        <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
+          <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="MahApps.Metro.IconPacks.Material, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
+          <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Material.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib" />
         <Reference Include="System" />
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+        </Reference>
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics" />
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        </Reference>
         <Reference Include="System.Xml" />
         <Reference Include="System.Xaml">
             <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -53,6 +76,17 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="LoginWindow.xaml.cs">
+          <DependentUpon>LoginWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="_Services\PasswordEncoderService.cs" />
+        <Page Include="Assets\Theme\ButtonTheme.xaml" />
+        <Page Include="Assets\Theme\InputTextBoxTheme.xaml" />
+        <Page Include="Assets\Theme\MenuButtonTheme.xaml" />
+        <Page Include="Assets\Theme\TextBoxTheme.xaml" />
+        <Page Include="Assets\Theme\VeatBasicButtonTheme.xaml" />
+        <Page Include="Assets\Theme\VeatCloseWindowButtonTheme.xaml" />
+        <Page Include="LoginWindow.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -71,14 +105,12 @@
         <Page Include="MVVM\View\CustomerView.xaml" />
         <Page Include="MVVM\View\DeliveryView.xaml" />
         <Page Include="MVVM\View\HomeView.xaml" />
-        <Page Include="Theme\ButtonTheme.xaml" />
-        <Page Include="Theme\InputTextBoxTheme.xaml" />
-        <Page Include="Theme\MenuButtonTheme.xaml" />
-        <Page Include="Theme\TextBoxTheme.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Model\CustomerModel.cs" />
         <Compile Include="MVVM\Model\DeliveryModel.cs" />
+        <Compile Include="MVVM\Model\EncryptedPasswordModel.cs" />
+        <Compile Include="MVVM\Model\UserModel.cs" />
         <Compile Include="MVVM\ViewModel\CustomerViewModel.cs" />
         <Compile Include="MVVM\ViewModel\DeliveryViewModel.cs" />
         <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
@@ -111,15 +143,14 @@
         <None Include="Veat-UAM-logo.ico" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Fonts\Inter.ttf" />
-      <Content Include="Fonts\Poppins.ttf">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Include="Images\csharp.png" />
-      <Content Include="Images\home_b.png" />
-      <Content Include="Images\home_w.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+      <Content Include="Assets\Fonts\Inter.ttf" />
+      <Content Include="Assets\Fonts\Poppins.ttf" />
+      <Content Include="Assets\Images\home_b.png" />
+      <Content Include="Assets\Images\home_w.png" />
+      <Content Include="Assets\Images\Veat-UAM-logo.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Assets" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
