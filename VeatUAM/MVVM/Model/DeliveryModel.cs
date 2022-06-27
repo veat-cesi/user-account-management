@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace VeatUAM.MVVM.Model
 {
-    public class DeliveryModel : INotifyPropertyChanged
+    public class DeliveryModel
     {
         private int _id;
         private string _firstName;
@@ -45,12 +45,6 @@ namespace VeatUAM.MVVM.Model
         {
             get => _password;
             set => _password = value;
-        }
-        
-        public event PropertyChangedEventHandler PropertyChanged;  
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

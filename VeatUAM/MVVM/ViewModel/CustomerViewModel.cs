@@ -1,6 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Windows.Input;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using VeatUAM.Core;
 using VeatUAM.MVVM.Model;
 
 namespace VeatUAM.MVVM.ViewModel
@@ -9,22 +11,47 @@ namespace VeatUAM.MVVM.ViewModel
     {
         public string head = "Customers";
 
-        private IList<CustomerModel> _customersDevList;
-
         public CustomerViewModel()
         {
-            _customersDevList = new List<CustomerModel>()
-            {  
-                new CustomerModel{Id = 1,FirstName="Gregory",LastName="Ployart",Email="gregory.ployart@viacesi.fr",Phone="+33622334455",Password= "123456"},
-                new CustomerModel{Id = 2,FirstName="Mathieu",LastName="Musard",Email="mathieu.musard@viacesi.fr",Phone="+33666778899",Password= "123456"},
-                new CustomerModel{Id = 3,FirstName="Xavier",LastName="Labarbe",Email="xavier.labarbe@viacesi.fr",Phone="+33722334455",Password= "123456"},
-            };
+            Customers = new List<CustomerModel>();
+            MySqlConnection mySqlConnection = new MySqlConnection();
+            mySqlConnection.Connection.Open();
+            if (mySqlConnection.ConnectionState())
+            {
+                const string query = "SELECT * FROM customer";
+                mySqlConnection.SetupQuery(query);
+                mySqlConnection.SetupReader();
+                while (mySqlConnection.Reader.Read())
+                {
+                    
+                    /*
+                    DO NOT USE DICTIONNARY
+                    RATHER USE DIRECTLY READER.GETINT32/STRING/DATETIMEOFFSET/BOOLEAN
+                    DO NOT MIND BOXING
+                     */
+                    
+                    Trace.WriteLine(mySqlConnection.Reader.GetInt32(0));
+                    Trace.WriteLine(mySqlConnection.Reader.GetDateTimeOffset(6));
+                    var rowModel = new Dictionary<string, object>();
+                    for (var i = 0; i < mySqlConnection.Reader.FieldCount; i++)
+                    {
+                        rowModel.Add(mySqlConnection.Reader.GetName(i),
+                            mySqlConnection.Reader.GetValue(i));
+                    }
+                    Trace.WriteLine(rowModel.ElementAt(1).Value);
+                    var pendingCustomer = new CustomerModel();
+                    pendingCustomer.ToCustomerModel(rowModel);
+                    Customers.Add(pendingCustomer);
+                }
+                mySqlConnection.Connection.Close();
+            }
+            else
+            {
+                MessageBox.Show("Connection failed");
+            }
+
         }
 
-        public IList<CustomerModel> CustomersDevList
-        {
-            get => _customersDevList;
-            set => _customersDevList = value;
-        }
+        public IList<CustomerModel> Customers { get; set; }
     }
 }
