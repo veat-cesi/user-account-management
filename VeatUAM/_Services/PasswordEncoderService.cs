@@ -19,7 +19,7 @@ namespace VeatUAM._Services
                 return encryptedPasswordModel.HashedPassword;
             }
 
-            throw new Exception("Hash processus failed.");
+            throw new Exception("Hash process failed.");
         }
 
         public static bool VerifyPassword(string input, string reference)
