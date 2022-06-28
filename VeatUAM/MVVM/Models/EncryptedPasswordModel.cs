@@ -1,4 +1,4 @@
-﻿namespace LoginTuto.Services
+﻿namespace VeatUAM.MVVM.Models
 {
     public class EncryptedPasswordModel
     {

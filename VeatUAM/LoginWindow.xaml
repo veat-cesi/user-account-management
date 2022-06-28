@@ -99,7 +99,7 @@
                     <Button Width="100" Height="35" 
                             Content="LOGIN" 
                             Style="{StaticResource VeatBasicButton}"
-                            Click="Login"/>
+                            Click="SubmitLogin"/>
                 </StackPanel>
                 
             </StackPanel>

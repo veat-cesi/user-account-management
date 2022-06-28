@@ -1,13 +1,13 @@
 namespace VeatUAM._Services
 {
-    public  class AuthenticationService
+    public  static class AuthenticationService
     {
-        public string Email { get; set; }
+        public static string Email { get; set; }
 
-        public string Role { get; set; }
+        public static string Role { get; set; }
 
-        public string FirstName { get; set; }
+        public static string FirstName { get; set; }
 
-        public bool Connected { get; set; }
+        public static bool Connected { get; set; }
     }
 }

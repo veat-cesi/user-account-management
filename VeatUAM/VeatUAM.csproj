@@ -147,7 +147,9 @@
       <Content Include="Assets\Fonts\Inter.ttf" />
       <Content Include="Assets\Fonts\Poppins.ttf" />
       <Content Include="Assets\Images\home_b.png" />
-      <Content Include="Assets\Images\home_w.png" />
+      <Content Include="Assets\Images\home_w.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
       <Content Include="Assets\Images\Veat-UAM-logo.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>

@@ -1,6 +1,7 @@
 ﻿using System;
+using VeatUAM.MVVM.Models;
 
-namespace LoginTuto.Services
+namespace VeatUAM._Services
 {
     public static class PasswordEncoderService
     {
