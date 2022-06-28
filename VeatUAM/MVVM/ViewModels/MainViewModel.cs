@@ -59,7 +59,7 @@ namespace VeatUAM.MVVM.ViewModel
             {
                 
                 CurrentView = CustomerVM;
-                CurrentHead = CustomerVM?.head;
+                CurrentHead = CustomerVM.head;
             });
             
             DeliveryViewCommand = new RelayCommand(o =>

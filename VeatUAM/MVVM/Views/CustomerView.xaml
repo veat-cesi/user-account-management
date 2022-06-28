@@ -21,17 +21,21 @@
         </Grid.RowDefinitions>  
         
         <DataGrid x:Name="CustomerDataGrid" IsReadOnly="True" AutoGenerateColumns="False" 
-                  ItemsSource="{Binding Customers}"
-                  SelectionChanged="CustomerDataGrid_SelectionChanged">
+                  ItemsSource="{Binding Customers}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="Selected" Handler="DataGridRow_OnSelected"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="100" Header="Id" Binding="{Binding Id}" />
-                <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
-                <DataGridTextColumn Width="*" Header="Email Address" Binding="{Binding Email}" />
-                <DataGridTextColumn Width="*" Header="Phone Number" Binding="{Binding Phone}" />
-                <DataGridTextColumn Width="*" Header="Created at" Binding="{Binding CreatedAt}" />
-                <DataGridTextColumn Width="*" Header="Updated at" Binding="{Binding UpdatedAt}" />
-                <DataGridTextColumn Width="*" Header="Deleted?" Binding="{Binding Deleted}" />
+                <DataGridTextColumn Width="100" Header="Id" CanUserSort="False" Binding="{Binding Id}" />
+                <DataGridTextColumn Width="*" Header="First Name" CanUserSort="False" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Width="*" Header="Last Name" CanUserSort="False" Binding="{Binding LastName}" />
+                <DataGridTextColumn Width="*" Header="Email Address" CanUserSort="False" Binding="{Binding Email}" />
+                <DataGridTextColumn Width="*" Header="Phone Number" CanUserSort="False" Binding="{Binding Phone}" />
+                <DataGridTextColumn Width="*" Header="Created at" CanUserSort="False" Binding="{Binding CreatedAt}" />
+                <DataGridTextColumn Width="*" Header="Updated at" CanUserSort="False" Binding="{Binding UpdatedAt}" />
+                <DataGridTextColumn Width="*" Header="Deleted?" CanUserSort="False" Binding="{Binding Deleted}" />
             </DataGrid.Columns>
         </DataGrid>
         
@@ -184,11 +188,13 @@
             </Button>
             
             <Button Grid.Column="3"
+                    x:Name="CustomerSubmitButton"
                     HorizontalAlignment="Right"
                     Content="Submit"
                     Foreground="#E1E1E1"
                     Height="30"
                     Width="125"
+                    Visibility="Hidden"
                     Margin="0, 0, 10, 0"
                     FontSize="22">
                 <Button.Style>

@@ -81,6 +81,7 @@
           <DependentUpon>LoginWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="_Services\AuthenticationService.cs" />
+        <Compile Include="_Services\DataBaseConnection.cs" />
         <Compile Include="_Services\PasswordEncoderService.cs" />
         <Page Include="Assets\Theme\ButtonTheme.xaml" />
         <Page Include="Assets\Theme\InputTextBoxTheme.xaml" />

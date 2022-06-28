@@ -1,6 +1,9 @@
 using System;
+using System.Data;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using VeatUAM.MVVM.Model;
 
 namespace VeatUAM.MVVM.View
@@ -21,20 +24,21 @@ namespace VeatUAM.MVVM.View
             set => _creationMode = value;
         }
 
-        private void CustomerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGridRow_OnSelected(object sender, RoutedEventArgs e)
         {
             CreationMode = false;
-            CustomerDataGrid = (DataGrid) sender;
-            CustomerModel row = (CustomerModel)CustomerDataGrid.SelectedItems[0];
-            if (row == null) return;
-            InputCustomerId.Text = row.Id.ToString();
-            InputCustomerFirstName.Text = row.FirstName;
-            InputCustomerLastName.Text = row.LastName;
-            InputCustomerEmail.Text = row.Email;
-            InputCustomerPhone.Text = row.Phone;
-            ActionCustomer.Text = $"Customer {row.Id.ToString()} selected";
+            if (sender == null) return;
+            if (CustomerDataGrid.Items.IndexOf(CustomerDataGrid.CurrentItem) < 0) return;
+            var rowModel = (CustomerModel) CustomerDataGrid.CurrentItem;
+            InputCustomerId.Text = rowModel.Id.ToString();
+            InputCustomerFirstName.Text = rowModel.FirstName;
+            InputCustomerLastName.Text = rowModel.LastName;
+            InputCustomerEmail.Text = rowModel.Email;
+            InputCustomerPhone.Text = rowModel.Phone;
+            ActionCustomer.Text = $"Customer {rowModel.Id.ToString()} selected";
             ActionCustomer.Visibility = Visibility.Visible;
             CustomerDeleteButton.Visibility = Visibility.Visible;
+            CustomerSubmitButton.Visibility = Visibility.Visible;
         }
 
         private void ClearCustomerInputs()
@@ -44,15 +48,17 @@ namespace VeatUAM.MVVM.View
             InputCustomerLastName.Text = "";
             InputCustomerEmail.Text = "";
             InputCustomerPhone.Text = "";
-            CustomerDeleteButton.Visibility = Visibility.Hidden;
         }
         
         private void NewCustomer(object sender, EventArgs e)
         {
+            CustomerDataGrid.UnselectAll();
             ClearCustomerInputs();
             CreationMode = true;
             ActionCustomer.Text = "Creating a new customer";
             ActionCustomer.Visibility = Visibility.Visible;
+            CustomerDeleteButton.Visibility = Visibility.Hidden;
+            CustomerSubmitButton.Visibility = Visibility.Visible;
         }
     }
 }

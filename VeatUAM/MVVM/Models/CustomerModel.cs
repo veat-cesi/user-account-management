@@ -13,10 +13,25 @@ namespace VeatUAM.MVVM.Model
         private string _lastName;
         private string _email;
         private string _phone;
-        private string _password;
         private DateTimeOffset _createdAt;
         private DateTimeOffset _updatedAt;
         private bool _deleted;
+
+        public CustomerModel()
+        {
+        }
+
+        public CustomerModel(int id, string firstName, string lastName, string email, string phone, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted)
+        {
+            _id = id;
+            _firstName = firstName;
+            _lastName = lastName;
+            _email = email;
+            _phone = phone;
+            _createdAt = createdAt;
+            _updatedAt = updatedAt;
+            _deleted = deleted;
+        }
 
         public int Id
         {
@@ -46,12 +61,6 @@ namespace VeatUAM.MVVM.Model
         {
             get => _phone;
             set => _phone = value;
-        }
-
-        public string Password
-        {
-            get => _password;
-            set => _password = value;
         }
 
         public DateTimeOffset CreatedAt
@@ -92,8 +101,8 @@ namespace VeatUAM.MVVM.Model
                 LastName = dbCustomer["lastName"].ToString();
                 Email = dbCustomer["email"].ToString();
                 Phone = dbCustomer["phone"].ToString();
-                CreatedAt = DateTime.Parse( dbCustomer["createdAt"].ToString());
-                UpdatedAt = DateTime.Parse(dbCustomer["updatedAt"].ToString());
+                CreatedAt = DateTimeOffset.Parse(dbCustomer["createdAt"].ToString());
+                UpdatedAt = DateTimeOffset.Parse(dbCustomer["updatedAt"].ToString());
                 Deleted = (bool) dbCustomer["deleted"];
             }
             catch (Exception e)
