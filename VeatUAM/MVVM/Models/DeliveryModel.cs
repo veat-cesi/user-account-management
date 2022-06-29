@@ -1,50 +1,88 @@
+using System;
 using System.ComponentModel;
 
 namespace VeatUAM.MVVM.Model
 {
     public class DeliveryModel
     {
-        private int _id;
-        private string _firstName;
-        private string _lastName;
-        private string _email;
-        private string _phone;
-        private string _password;
-
-        public int Id
+        public DeliveryModel()
         {
-            get => _id;
-            set => _id = value;
         }
 
-        public string FirstName
+        public DeliveryModel(int id, string firstName, string lastName, string email, string phone,
+            DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, string password = null)
         {
-            get => _firstName;
-            set => _firstName = value;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = password;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
         }
 
-        public string LastName
+        public DeliveryModel(int id, string firstName, string lastName, string email, string phone,
+            DateTimeOffset createdAt, DateTimeOffset updatedAt, string password = null)
         {
-            get => _lastName;
-            set => _lastName = value;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = password;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
         }
 
-        public string Email
+        public DeliveryModel(string firstName, string lastName, string email, string phone, string password,
+            DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, DateTimeOffset? deletedAt)
         {
-            get => _email;
-            set => _email = value;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = password;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
+            DeletedAt = deletedAt;
         }
 
-        public string Phone
+        public DeliveryModel(int id, string firstName, string lastName, string email, string phone, string password,
+            DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, DateTimeOffset? deletedAt)
         {
-            get => _phone;
-            set => _phone = value;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = password;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
+            DeletedAt = deletedAt;
         }
 
-        public string Password
-        {
-            get => _password;
-            set => _password = value;
-        }
+        public int Id { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Password { get; set; }
+        
+        public DateTimeOffset CreatedAt { get; set; }
+        
+        public DateTimeOffset UpdatedAt { get; set; }
+        
+        public bool Deleted { get; set; }
+        
+        public DateTimeOffset? DeletedAt { get; set; }
     }
 }

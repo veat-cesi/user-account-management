@@ -8,17 +8,6 @@ namespace VeatUAM.MVVM.Model
 {
     public class CustomerModel
     {
-        private int _id;
-        private string _firstName;
-        private string _lastName;
-        private string _email;
-        private string _phone;
-        private string _password;
-        private DateTimeOffset _createdAt;
-        private DateTimeOffset _updatedAt;
-        private bool _deleted;
-        private DateTimeOffset? _deletedAt;
-
         public CustomerModel()
         {
         }
@@ -26,125 +15,74 @@ namespace VeatUAM.MVVM.Model
         public CustomerModel(string firstName, string lastName, string email, string phone, string password,
             DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, DateTimeOffset? deletedAt)
         {
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _phone = phone;
-            _password = password;
-            _createdAt = createdAt;
-            _updatedAt = updatedAt;
-            _deleted = deleted;
-            _deletedAt = deletedAt;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = password;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
+            DeletedAt = deletedAt;
         }
 
         public CustomerModel(string firstName, string lastName, string email, string phone, DateTimeOffset createdAt,
             DateTimeOffset updatedAt, bool deleted, DateTimeOffset? deletedAt)
         {
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _phone = phone;
-            _createdAt = createdAt;
-            _updatedAt = updatedAt;
-            _deleted = deleted;
-            _deletedAt = deletedAt;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
+            DeletedAt = deletedAt;
         }
 
         public CustomerModel(int id, string firstName, string lastName, string email, string phone, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted)
         {
-            _id = id;
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _phone = phone;
-            _password = null;
-            _createdAt = createdAt;
-            _updatedAt = updatedAt;
-            _deleted = deleted;
-            _deletedAt = null;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            Password = null;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
+            DeletedAt = null;
         }
 
         public CustomerModel(int id, string firstName, string lastName, string email, string phone,
             DateTimeOffset createdAt,
             DateTimeOffset updatedAt, string password = null)
         {
-            _id = id;
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
-            _phone = phone;
-            _updatedAt = updatedAt;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Phone = phone;
+            UpdatedAt = updatedAt;
         }
 
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public int Id { get; set; }
 
-        public string FirstName
-        {
-            get => _firstName;
-            set => _firstName = value;
-        }
+        public string FirstName { get; set; }
 
-        public string LastName
-        {
-            get => _lastName;
-            set => _lastName = value;
-        }
+        public string LastName { get; set; }
 
-        public string Email
-        {
-            get => _email;
-            set => _email = value;
-        }
+        public string Email { get; set; }
 
-        public string Phone
-        {
-            get => _phone;
-            set => _phone = value;
-        }
+        public string Phone { get; set; }
 
-        public string Password
-        {
-            get => _password;
-            set => _password = value;
-        }
+        public string Password { get; set; }
 
-        public DateTimeOffset CreatedAt
-        {
-            get => _createdAt;
-            set => _createdAt = value;
-        }
+        public DateTimeOffset CreatedAt { get; set; }
 
-        public DateTimeOffset UpdatedAt
-        {
-            get => _updatedAt;
-            set => _updatedAt = value;
-        }
+        public DateTimeOffset UpdatedAt { get; set; }
 
-        public bool Deleted
-        {
-            get => _deleted;
-            set => _deleted = value;
-        }
+        public bool Deleted { get; set; }
 
-        public DateTimeOffset? DeletedAt
-        {
-            get => _deletedAt;
-            set => _deletedAt = value;
-        }
-
-        public void SetCustomer(CustomerModel c)
-        {
-            FirstName = c.FirstName;
-            LastName = c.LastName;
-            Email = c.Email;
-            Phone = c.Phone;
-            CreatedAt = c.CreatedAt;
-            UpdatedAt = c.UpdatedAt;
-            Deleted = c.Deleted;
-        }
+        public DateTimeOffset? DeletedAt { get; set; }
     }
 }

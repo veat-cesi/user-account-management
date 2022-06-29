@@ -20,16 +20,22 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>  
         
-        <DataGrid x:Name="DeliveryDataGrid" 
-                  IsReadOnly="True" AutoGenerateColumns="False" 
-                  ItemsSource="{Binding DeliveryDevList}"
-                  SelectionChanged="DeliveryDataGrid_SelectionChanged">
+        <DataGrid x:Name="DeliveryDataGrid" IsReadOnly="True" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Deliveries}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="Selected" Handler="DataGridRow_OnSelected"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Id}" />
-                <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
-                <DataGridTextColumn Width="*" Header="Email Address" Binding="{Binding Email}" />
-                <DataGridTextColumn Width="*" Header="Phone Number" Binding="{Binding Phone}" />
+                <DataGridTextColumn Width="100" Header="Id" CanUserSort="False" Binding="{Binding Id}" />
+                <DataGridTextColumn Width="*" Header="First Name" CanUserSort="False" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Width="*" Header="Last Name" CanUserSort="False" Binding="{Binding LastName}" />
+                <DataGridTextColumn Width="*" Header="Email Address" CanUserSort="False" Binding="{Binding Email}" />
+                <DataGridTextColumn Width="*" Header="Phone Number" CanUserSort="False" Binding="{Binding Phone}" />
+                <DataGridTextColumn Width="*" Header="Created at" CanUserSort="False" Binding="{Binding CreatedAt}" />
+                <DataGridTextColumn Width="*" Header="Updated at" CanUserSort="False" Binding="{Binding UpdatedAt}" />
+                <DataGridTextColumn Width="*" Header="Deleted?" CanUserSort="False" Binding="{Binding Deleted}" />
             </DataGrid.Columns>
         </DataGrid>
         
@@ -47,6 +53,43 @@
                 <RowDefinition Height="*"/>  
                 <RowDefinition Height="*"/>  
             </Grid.RowDefinitions>
+            
+            <Grid Grid.Column="1">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel 
+                    Margin="0, 10, 0, 0">
+                    <Label Content="Password"
+                           Foreground="#E1E1E1"
+                           Padding="0,0,0,5"
+                           Margin="5,0,5,0"
+                           FontSize="20"/>
+                    <PasswordBox x:Name="InputDeliveryPassword"
+                                 Height="25"
+                                 Margin="5,0,5,0"
+                                 FontSize="18"
+                                 Style="{StaticResource VeatInputPasswordBox}"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1"
+                            Margin="0, 10, 0, 0">
+                    <Label Content="Confirm Password"
+                           Foreground="#E1E1E1"
+                           Padding="0,0,0,5"
+                           Margin="5,0,5,0"
+                           FontSize="20"/>
+                    <PasswordBox x:Name="InputDeliveryPasswordConfirm"
+                                 Height="25"
+                                 Margin="5,0,5,0"
+                                 FontSize="18"
+                                 Style="{StaticResource VeatInputPasswordBox}"/>
+                </StackPanel>
+                
+            </Grid>
             
             <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left"
@@ -129,6 +172,16 @@
                 <ColumnDefinition Width="135"/>
             </Grid.ColumnDefinitions>
             
+            <TextBlock
+                x:Name="ActionDelivery"
+                Foreground="#E1E1E1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                FontSize="16"
+                FontFamily="Fonts/#Poppins"
+                Margin="10,0,10,0"
+                Visibility="Hidden"/>
+            
             <Button Grid.Column="1"
                     HorizontalAlignment="Right"
                     Content="New"
@@ -137,6 +190,7 @@
                     Width="125"
                     Margin="0, 0, 10, 0"
                     FontSize="22"
+                    Click="NewDelivery"
                     Style="{StaticResource ModernButton}"/>
             
             <Button Grid.Column="2"
@@ -148,7 +202,8 @@
                     Width="125"
                     Visibility="Hidden"
                     Margin="0, 0, 10, 0"
-                    FontSize="22">
+                    FontSize="22"
+                    Click="DeliveryDelete">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
                         <Setter Property="Background" Value="#EB445A"/>
@@ -171,13 +226,16 @@
             </Button>
             
             <Button Grid.Column="3"
+                    x:Name="DeliverySubmitButton"
                     HorizontalAlignment="Right"
                     Content="Submit"
                     Foreground="#E1E1E1"
                     Height="30"
                     Width="125"
+                    Visibility="Hidden"
                     Margin="0, 0, 10, 0"
-                    FontSize="22">
+                    FontSize="22"
+                    Click="DeliverySubmit">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
                         <Setter Property="Background" Value="#3880FF"/>
@@ -201,5 +259,6 @@
             
             
         </Grid>
+        
     </Grid>
 </UserControl>
