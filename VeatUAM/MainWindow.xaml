@@ -111,7 +111,8 @@
                                  Foreground="#A4A4A4"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
-                                 FontFamily="Fonts/#Poppins"/>
+                                 FontFamily="Fonts/#Poppins"
+                                 Click="OnClickLogout"/>
                 </StackPanel>
                 
                 
@@ -141,7 +142,9 @@
                             Style="{StaticResource VeatMinimizeWindowButton}"
                             Click="MinimizeWindow"/>
                     
-                    <Button Grid.Column="2" VerticalAlignment="Top"
+                    <Button Grid.Column="2"
+                            x:Name="MaximizeWindowButton"
+                            VerticalAlignment="Top"
                             HorizontalAlignment="Right"
                             Style="{StaticResource VeatMaximizeWindowButton}"
                             Click="MaximizeWindow"/>
