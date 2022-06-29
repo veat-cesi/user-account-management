@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VeatUAM"
-        xmlns:viewModel="clr-namespace:VeatUAM.MVVM.ViewModel"
+        xmlns:viewModel="clr-namespace:VeatUAM.MVVM.ViewModels"
         mc:Ignorable="d"
         Title="Veat UAM" Height="600" Width="920"
         WindowStyle="None"

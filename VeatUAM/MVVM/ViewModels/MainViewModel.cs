@@ -1,7 +1,7 @@
 using System.Windows.Media;
 using VeatUAM.Core;
 
-namespace VeatUAM.MVVM.ViewModel
+namespace VeatUAM.MVVM.ViewModels
 {
     class MainViewModel : ObservableObject
     {

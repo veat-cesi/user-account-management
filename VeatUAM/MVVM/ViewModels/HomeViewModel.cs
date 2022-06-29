@@ -1,4 +1,4 @@
-namespace VeatUAM.MVVM.ViewModel
+namespace VeatUAM.MVVM.ViewModels
 {
     class HomeViewModel
     {

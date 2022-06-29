@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
 using VeatUAM.Core;
-using VeatUAM.MVVM.Model;
+using VeatUAM.MVVM.Models;
 
-namespace VeatUAM.MVVM.ViewModel
+namespace VeatUAM.MVVM.ViewModels
 {
     public class DeliveryViewModel : ObservableObject
     {
@@ -28,7 +27,6 @@ namespace VeatUAM.MVVM.ViewModel
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.SetupReader();
             while (MySqlConnectionService.Reader.Read())
-            {
                 Deliveries.Add(new DeliveryModel(
                     MySqlConnectionService.Reader.GetInt32(0),
                     MySqlConnectionService.Reader.GetString(1),
@@ -39,7 +37,6 @@ namespace VeatUAM.MVVM.ViewModel
                     MySqlConnectionService.Reader.GetDateTimeOffset(6),
                     MySqlConnectionService.Reader.GetBoolean(7)
                 ));
-            }
             MySqlConnectionService.Reader.Close();
         }
 
@@ -48,24 +45,28 @@ namespace VeatUAM.MVVM.ViewModel
             if (d == null) return;
             if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null &&
                 d.Password == null && d.Deleted)
-            {
                 throw new Exception("Invalid delivery model");
-            }
             try
             {
                 const string query =
-                    "INSERT INTO delivery " +
-                    "(firstName, lastName, email, phone, password, createdAt, updatedAt, deleted, deletedAt) " +
-                    "VALUES (@first_name, @last_name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
+                    "INSERT INTO delivery (firstName, lastName, email, phone, password, createdAt, updatedAt, deleted, deletedAt) VALUES (@first_name, @last_name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
                 MySqlConnectionService.SetupQuery(query);
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255)).Value = d.Email;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255)).Value = d.Phone;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255)).Value = d.Password;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@created_at", SqlDbType.DateTimeOffset)).Value = d.CreatedAt;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value = d.Deleted;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255))
+                    .Value = d.FirstName;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255))
+                    .Value = d.LastName;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
+                    .Value = d.Email;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
+                    .Value = d.Phone;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255))
+                    .Value = d.Password;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@created_at", SqlDbType.DateTimeOffset))
+                    .Value = d.CreatedAt;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset))
+                    .Value = d.UpdatedAt;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value =
+                    d.Deleted;
                 MySqlConnectionService.Command.ExecuteNonQuery();
                 InitDeliveries();
             }
@@ -74,14 +75,12 @@ namespace VeatUAM.MVVM.ViewModel
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         public void EditDelivery(DeliveryModel d)
         {
             if (d == null) return;
             if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null && d.Deleted)
-            {
                 throw new Exception("Invalid delivery model");
-            }
             try
             {
                 string query;
@@ -92,13 +91,20 @@ namespace VeatUAM.MVVM.ViewModel
                             "password = @password, updatedAt = @updated_at " +
                             "WHERE id = @id;";
                     MySqlConnectionService.SetupQuery(query);
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255)).Value = d.Password;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 4)).Value = d.Id;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255)).Value = d.Email;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255)).Value = d.Phone;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255))
+                        .Value = d.Password;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 4)).Value =
+                        d.Id;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
+                        .Value = d.Email;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
+                        .Value = d.Phone;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
                 else
@@ -109,13 +115,19 @@ namespace VeatUAM.MVVM.ViewModel
                             "WHERE id = @id;";
                     MySqlConnectionService.SetupQuery(query);
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = d.Id;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255)).Value = d.Email;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255)).Value = d.Phone;
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
+                        .Value = d.Email;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
+                        .Value = d.Phone;
+                    MySqlConnectionService.Command.Parameters
+                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
+
                 InitDeliveries();
             }
             catch (SqlException ex)
@@ -126,7 +138,6 @@ namespace VeatUAM.MVVM.ViewModel
 
         public void DeleteDelivery(int id)
         {
-            
             const string query = "UPDATE delivery SET deleted = @deleted, deletedAt = @deleted_at WHERE id = @id;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int))
@@ -143,6 +154,7 @@ namespace VeatUAM.MVVM.ViewModel
             {
                 MessageBox.Show(ex.Message);
             }
+
             InitDeliveries();
         }
     }

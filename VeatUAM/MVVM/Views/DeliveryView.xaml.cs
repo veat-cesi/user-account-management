@@ -5,10 +5,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using VeatUAM._Services;
-using VeatUAM.MVVM.Model;
-using VeatUAM.MVVM.ViewModel;
+using VeatUAM.MVVM.Models;
+using VeatUAM.MVVM.ViewModels;
 
-namespace VeatUAM.MVVM.View
+namespace VeatUAM.MVVM.Views
 {
     public partial class DeliveryView : UserControl
     {

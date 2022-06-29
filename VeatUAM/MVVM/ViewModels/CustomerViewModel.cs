@@ -8,9 +8,9 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using VeatUAM.Core;
-using VeatUAM.MVVM.Model;
+using VeatUAM.MVVM.Models;
 
-namespace VeatUAM.MVVM.ViewModel
+namespace VeatUAM.MVVM.ViewModels
 {
     public class CustomerViewModel : ObservableObject
     {

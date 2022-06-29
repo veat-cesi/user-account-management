@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace VeatUAM.MVVM.Model
+namespace VeatUAM.MVVM.Models
 {
     public class DeliveryModel
     {

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using VeatUAM.Core;
 
-namespace VeatUAM.MVVM.Model
+namespace VeatUAM.MVVM.Models
 {
     public class CustomerModel
     {
