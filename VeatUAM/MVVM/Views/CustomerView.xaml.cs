@@ -81,6 +81,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewCustomerSubmit()
         {
+            if (string.IsNullOrWhiteSpace(InputCustomerPassword.Password))
+            {
+                MessageBox.Show("Password input is empty!");
+                throw new NullReferenceException("PasswordBox.Password is null");
+            }
             if (PasswordConfirmation() == false)
             {
                 ActionCustomer.Text = "Password do not match";

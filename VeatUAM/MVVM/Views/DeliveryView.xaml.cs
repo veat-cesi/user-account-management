@@ -81,6 +81,12 @@ namespace VeatUAM.MVVM.Views
         
         private void NewDeliverySubmit()
         {
+            if (string.IsNullOrWhiteSpace(InputDeliveryPassword.Password))
+            {
+                MessageBox.Show("Password input is empty!");
+                return;
+            }
+
             if (PasswordConfirmation() == false)
             {
                 ActionDelivery.Text = "Password do not match";

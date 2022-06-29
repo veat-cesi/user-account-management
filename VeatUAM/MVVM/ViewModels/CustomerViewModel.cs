@@ -52,8 +52,16 @@ namespace VeatUAM.MVVM.ViewModels
             if (c.FirstName == null && c.LastName == null && c.Email == null && c.Phone == null &&
                 c.Password == null && c.Deleted)
             {
-                throw new Exception("Invalid customer model");
+                MessageBox.Show("Invalid customer model");
+                return;
             }
+
+            if (!IsUniqueEmail(c.Email))
+            {
+                MessageBox.Show("Email already in database!");
+                return;
+            }
+            
             try
             {
                 const string query =
@@ -83,7 +91,13 @@ namespace VeatUAM.MVVM.ViewModels
             if (c == null) return;
             if (c.FirstName == null && c.LastName == null && c.Email == null && c.Phone == null && c.Deleted)
             {
-                throw new Exception("Invalid customer model");
+                MessageBox.Show("Invalid customer model");
+                return;
+            }
+            if (!IsUniqueEmail(c.Email))
+            {
+                MessageBox.Show("Email already in database!");
+                return;
             }
             try
             {
@@ -147,6 +161,28 @@ namespace VeatUAM.MVVM.ViewModels
                 MessageBox.Show(ex.Message);
             }
             InitCustomers();
+        }
+
+        private bool IsUniqueEmail(string email)
+        {
+            const string query = "SELECT email FROM customer WHERE email = @email;";
+            MySqlConnectionService.SetupQuery(query);
+            MySqlConnectionService.Command.Parameters.Add("@email", SqlDbType.VarChar, 255).Value = email;
+            MySqlConnectionService.SetupReader();
+            if (MySqlConnectionService.Reader.FieldCount == 0)
+            {
+                MySqlConnectionService.Reader.Close();
+                return true;
+            }
+
+            if (MySqlConnectionService.Reader.FieldCount > 0)
+            {
+                MySqlConnectionService.Reader.Close();
+                return false;
+            }
+
+            MySqlConnectionService.Reader.Close();
+            throw new Exception("Negative Reader FieldCount");
         }
         
     }
