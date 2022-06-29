@@ -18,6 +18,8 @@
                 <ResourceDictionary Source="Assets/Theme/VeatCloseWindowButtonTheme.xaml" />
                 <ResourceDictionary Source="Assets/Theme/VeatBasicButtonTheme.xaml" />
                 <ResourceDictionary Source="Assets/Theme/VeatInputPasswordBoxTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/VeatMaximizeWindowButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/VeatMinimizeWindowButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

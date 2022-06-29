@@ -90,6 +90,8 @@
         <Page Include="Assets\Theme\VeatBasicButtonTheme.xaml" />
         <Page Include="Assets\Theme\VeatCloseWindowButtonTheme.xaml" />
         <Page Include="Assets\Theme\VeatInputPasswordBoxTheme.xaml" />
+        <Page Include="Assets\Theme\VeatMaximizeWindowButtonTheme.xaml" />
+        <Page Include="Assets\Theme\VeatMinimizeWindowButtonTheme.xaml" />
         <Page Include="LoginWindow.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
