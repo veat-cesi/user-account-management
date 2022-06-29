@@ -30,30 +30,24 @@ namespace VeatUAM
 
         private void SubmitLogin(object sender, RoutedEventArgs routedEventArgs)
         {
-            try
+            MySqlConnectionService.Connection.Open();
+            if (!MySqlConnectionService.ConnectionState()) return;
+            var query = $"SELECT email, password, role, firstName FROM tech WHERE email = '{LoginEmail.Text}';";
+            MySqlConnectionService.SetupQuery(query);
+            MySqlConnectionService.SetupReader();
+            while (MySqlConnectionService.Reader.Read())
             {
-                var mySqlConnection = new MySqlConnection();
-                mySqlConnection.Connection.Open();
-                if (!mySqlConnection.ConnectionState()) return;
-                var query = $"SELECT email, password, role, firstName FROM tech WHERE email = '{LoginEmail.Text}';";
-                mySqlConnection.SetupQuery(query);
-                mySqlConnection.SetupReader();
-                while (mySqlConnection.Reader.Read())
-                {
-                    if (!PasswordEncoderService.VerifyPassword(LoginPassword.Password, mySqlConnection.Reader.GetString(1))) continue;
-                    AuthenticationService.Email = LoginEmail.Text;
-                    AuthenticationService.Role = mySqlConnection.Reader.GetString(2);
-                    AuthenticationService.FirstName = mySqlConnection.Reader.GetString(3);
-                    AuthenticationService.Connected = true;
-                    var mainWindow = new MainWindow();
-                    Close();
-                    mainWindow.ShowDialog();
-                }
+                if (!PasswordEncoderService.VerifyPassword(LoginPassword.Password, MySqlConnectionService.Reader.GetString(1))) continue;
+                AuthenticationService.Email = LoginEmail.Text;
+                AuthenticationService.Role = MySqlConnectionService.Reader.GetString(2);
+                AuthenticationService.FirstName = MySqlConnectionService.Reader.GetString(3);
+                AuthenticationService.Connected = true;
+                break;
             }
-            catch (Exception e)
-            {
-                throw new Exception("No user found with this email/password", e);
-            }
+            MySqlConnectionService.Reader.Close();
+            var mainWindow = new MainWindow();
+            Close();
+            mainWindow.ShowDialog();
         }
 
         private void LoginEmail_OnGotFocus(object sender, RoutedEventArgs e)

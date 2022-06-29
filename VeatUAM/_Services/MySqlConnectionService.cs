@@ -1,11 +1,9 @@
 using System;
-using System.Data;
 using System.Data.SqlClient;
-using System.Windows;
 
 namespace VeatUAM.Core
 {
-    public class MySqlConnection
+    public static class MySqlConnectionService
     {
         private const string  ConnectionString =
             @"Data Source=localhost;" +
@@ -13,29 +11,27 @@ namespace VeatUAM.Core
             "Integrated Security=False;" +
             "User ID=sa;Password=Pass@word";
 
-        private SqlCommand _command;
-
-        public MySqlConnection()
+        static MySqlConnectionService()
         {
             Connection = new SqlConnection(ConnectionString);
         }
 
-        public SqlConnection Connection { get; }
+        public static SqlConnection Connection { get; }
+        
+        public static SqlCommand Command { get; set; }
 
-        public SqlCommand Command { get; }
+        public static SqlDataReader Reader { get; private set; }
 
-        public SqlDataReader Reader { get; private set; }
-
-        public void SetupQuery(string query)
+        public static void SetupQuery(string query)
         {
-            _command = new SqlCommand(query, Connection);
+            Command = new SqlCommand(query, Connection);
         }
 
-        public void SetupReader()
+        public static void SetupReader()
         {
-            if (_command != null)
+            if (Command != null)
             {
-                Reader = _command.ExecuteReader();
+                Reader = Command.ExecuteReader();
             }
             else
             {
@@ -43,7 +39,7 @@ namespace VeatUAM.Core
             }
         }
 
-        public bool ConnectionState()
+        public static bool ConnectionState()
         {
             return Connection != null && Connection.State == System.Data.ConnectionState.Open;
         }

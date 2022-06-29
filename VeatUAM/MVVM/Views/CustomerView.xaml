@@ -54,6 +54,41 @@
                 <RowDefinition Height="*"/>  
             </Grid.RowDefinitions>
             
+            <Grid Grid.Column="1">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel 
+                    Margin="0, 10, 0, 0">
+                    <Label Content="Password"
+                           Foreground="#E1E1E1"
+                           Padding="0,0,0,5"
+                           Margin="5,0,5,0"
+                           FontSize="20"/>
+                    <PasswordBox x:Name="InputCustomerPassword"
+                                 Height="25"
+                                 Margin="5,0,5,0"
+                                 FontSize="18"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1"
+                            Margin="0, 10, 0, 0">
+                    <Label Content="Confirm Password"
+                           Foreground="#E1E1E1"
+                           Padding="0,0,0,5"
+                           Margin="5,0,5,0"
+                           FontSize="20"/>
+                    <PasswordBox x:Name="InputCustomerPasswordConfirm"
+                                 Height="25"
+                                 Margin="5,0,5,0"
+                                 FontSize="18"/>
+                </StackPanel>
+                
+            </Grid>
+            
             <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left"
                         Margin="10, 10, 0, 0"
@@ -165,7 +200,8 @@
                     Width="125"
                     Visibility="Hidden"
                     Margin="0, 0, 10, 0"
-                    FontSize="22">
+                    FontSize="22"
+                    Click="CustomerDelete">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
                         <Setter Property="Background" Value="#EB445A"/>
@@ -196,7 +232,8 @@
                     Width="125"
                     Visibility="Hidden"
                     Margin="0, 0, 10, 0"
-                    FontSize="22">
+                    FontSize="22"
+                    Click="CustomerSubmit">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ModernButton}">
                         <Setter Property="Background" Value="#3880FF"/>

@@ -81,7 +81,7 @@
           <DependentUpon>LoginWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="_Services\AuthenticationService.cs" />
-        <Compile Include="_Services\DataBaseConnection.cs" />
+        <Compile Include="_Services\MySqlConnectionService.cs" />
         <Compile Include="_Services\PasswordEncoderService.cs" />
         <Page Include="Assets\Theme\ButtonTheme.xaml" />
         <Page Include="Assets\Theme\InputTextBoxTheme.xaml" />
@@ -89,6 +89,7 @@
         <Page Include="Assets\Theme\TextBoxTheme.xaml" />
         <Page Include="Assets\Theme\VeatBasicButtonTheme.xaml" />
         <Page Include="Assets\Theme\VeatCloseWindowButtonTheme.xaml" />
+        <Page Include="Assets\Theme\VeatInputPasswordBoxTheme.xaml" />
         <Page Include="LoginWindow.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -98,7 +99,6 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Include="Core\MySqlConnection.cs" />
         <Compile Include="Core\ObservableObject.cs" />
         <Compile Include="Core\RelayCommand.cs" />
         <Compile Include="MainWindow.xaml.cs">

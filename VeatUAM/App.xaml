@@ -6,7 +6,8 @@
     xmlns:view="clr-namespace:VeatUAM.MVVM.View"
     xmlns:viewModel="clr-namespace:VeatUAM.MVVM.ViewModel"
     xmlns:core="clr-namespace:VeatUAM.Core"
-    StartupUri="LoginWindow.xaml">
+    StartupUri="LoginWindow.xaml"
+    Exit="Application_Exit">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,6 +17,7 @@
                 <ResourceDictionary Source="Assets/Theme/ButtonTheme.xaml" />
                 <ResourceDictionary Source="Assets/Theme/VeatCloseWindowButtonTheme.xaml" />
                 <ResourceDictionary Source="Assets/Theme/VeatBasicButtonTheme.xaml" />
+                <ResourceDictionary Source="Assets/Theme/VeatInputPasswordBoxTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

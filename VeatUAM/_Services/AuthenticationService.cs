@@ -9,5 +9,13 @@ namespace VeatUAM._Services
         public static string FirstName { get; set; }
 
         public static bool Connected { get; set; }
+
+        public static void Expire()
+        {
+            Email = null;
+            Role = null;
+            FirstName = null;
+            Connected = false;
+        }
     }
 }
