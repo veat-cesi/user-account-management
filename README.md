@@ -11,4 +11,17 @@ L'application doit contenir les fonctionnalités suivantes :
 - Journaux de transaction et système de sauvegarde
 
 ## Fonctionnalités actuelles
-...
+
+### Fonctionnalités principales
+
+- Page de login au démarrage.
+- Une connexion unique de l'utilisateur à la base de données.
+- 
+
+### Fonctionnalités autres
+
+- Système de gestion des mots de passe avec hachage.
+- Gestion de l'Authentification utilisateur via login.
+- Créer, Modifier, Supprimer un "utilisateur final".
+- Créer, Modifier, Supprimer un "Livreur".
+- Créer, Modifier, Supprimer un "Développeur".
