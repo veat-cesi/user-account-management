@@ -41,6 +41,14 @@
             <DataTemplate DataType="{x:Type viewModel:RestaurantViewModel}">
                 <view:RestaurantView />
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:SalesUserViewModel}">
+                <view:SalesUserView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:TechUserViewModel}">
+                <view:TechUserView />
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

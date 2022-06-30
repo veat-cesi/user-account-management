@@ -83,9 +83,11 @@
         <Compile Include="MVVM\Models\DeveloperModel.cs" />
         <Compile Include="MVVM\Models\RestaurantModel.cs" />
         <Compile Include="MVVM\Models\SalesUserModel.cs" />
+        <Compile Include="MVVM\Models\TechUserModel.cs" />
         <Compile Include="MVVM\ViewModels\DeveloperViewModel.cs" />
         <Compile Include="MVVM\ViewModels\RestaurantViewModel.cs" />
         <Compile Include="MVVM\ViewModels\SalesUserViewModel.cs" />
+        <Compile Include="MVVM\ViewModels\TechUserViewModel.cs" />
         <Compile Include="MVVM\Views\DeveloperView.xaml.cs">
           <DependentUpon>DeveloperView.xaml</DependentUpon>
         </Compile>
@@ -94,6 +96,9 @@
         </Compile>
         <Compile Include="MVVM\Views\SalesUserView.xaml.cs">
           <DependentUpon>SalesUserView.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MVVM\Views\TechUserView.xaml.cs">
+          <DependentUpon>TechUserView.xaml</DependentUpon>
         </Compile>
         <Compile Include="_Services\AuthenticationService.cs" />
         <Compile Include="_Services\MySqlConnectionService.cs" />
@@ -128,6 +133,7 @@
         <Page Include="MVVM\Views\HomeView.xaml" />
         <Page Include="MVVM\Views\RestaurantView.xaml" />
         <Page Include="MVVM\Views\SalesUserView.xaml" />
+        <Page Include="MVVM\Views\TechUserView.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MVVM\Models\CustomerModel.cs" />

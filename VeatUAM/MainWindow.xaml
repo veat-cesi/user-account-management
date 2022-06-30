@@ -99,6 +99,7 @@
                                  Foreground="#E1E1E1"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding SalesUserViewCommand}"
                                  FontFamily="Fonts/#Poppins"/>
                     
                     <RadioButton Content="Technical"
@@ -106,6 +107,7 @@
                                  Foreground="#E1E1E1"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding TechUserViewCommand}"
                                  FontFamily="Fonts/#Poppins"/>
                     
                     <RadioButton Content="Logout"
