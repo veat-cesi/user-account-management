@@ -94,7 +94,7 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void EditTechUser(TechUserModel tu)
+        public void EditTechUser(string previousEmail, TechUserModel tu)
         {
             if (tu == null) return;
             if (tu.Role == null && tu.FirstName == null && tu.LastName == null && tu.Email == null && tu.Phone == null && tu.Deleted)
@@ -103,9 +103,9 @@ namespace VeatUAM.MVVM.ViewModels
                 return;
             }
 
-            if (!IsUniqueEmail(tu.Email))
+            if (!previousEmail.Equals(tu.Email) && !IsUniqueEmail(tu.Email))
             {
-                MessageBox.Show("Email already in database!");
+                MessageBox.Show("Email already taken!");
                 return;
             }
 

@@ -103,6 +103,7 @@
         <Compile Include="_Services\AuthenticationService.cs" />
         <Compile Include="_Services\MySqlConnectionService.cs" />
         <Compile Include="_Services\PasswordEncoderService.cs" />
+        <Compile Include="_Services\PermissionService.cs" />
         <Page Include="Assets\Theme\ButtonTheme.xaml" />
         <Page Include="Assets\Theme\InputTextBoxTheme.xaml" />
         <Page Include="Assets\Theme\MenuButtonTheme.xaml" />

@@ -51,6 +51,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewTechUser(object sender, EventArgs e)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             TechUserDataGrid.UnselectAll();
             ClearTechUserInputs();
             CreationMode = true;
@@ -62,6 +67,34 @@ namespace VeatUAM.MVVM.Views
 
         public void TechUserSubmit(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
+
+            switch (SelectedTechUser.Role)
+            {
+                case "user":
+                    break;
+                case "admin":
+                    if (AuthenticationService.Role.Equals("admin"))
+                    {
+                        PermissionService.Permission(false);
+                        return;
+                    }
+
+                    break;
+                case "superadmin":
+                    if (AuthenticationService.Role.Equals("superadmin"))
+                    {
+                        PermissionService.Permission(false);
+                        return;
+                    }
+
+                    break;
+            }
+
             if (CreationMode)
             {
                 NewTechUserSubmit();
@@ -74,6 +107,31 @@ namespace VeatUAM.MVVM.Views
 
         public void TechUserDelete(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
+
+            switch (SelectedTechUser.Role)
+            {
+                case "user":
+                    break;
+                case "admin":
+                    if (AuthenticationService.Role.Equals("admin"))
+                    {
+                        PermissionService.Permission(false);
+                        return;
+                    }
+                    break;
+                case "superadmin":
+                    if (AuthenticationService.Role.Equals("superadmin"))
+                    {
+                        PermissionService.Permission(false);
+                        return;
+                    }
+                    break;
+            }
             var viewModel = (TechUserViewModel) DataContext;
             viewModel.DeleteTechUser(SelectedTechUser.Id);
             ActionTechUser.Text = $"TechUser {SelectedTechUser.Id} deleted";
@@ -148,7 +206,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (TechUserViewModel) DataContext;
-            viewModel.EditTechUser(submittedTechUser);
+            viewModel.EditTechUser(SelectedTechUser.Email ,submittedTechUser);
             ActionTechUser.Text = $"TechUser {submittedTechUser.Id.ToString()} updated!";
             RefreshDataGrid();
         }

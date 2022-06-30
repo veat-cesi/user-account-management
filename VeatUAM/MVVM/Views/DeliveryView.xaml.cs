@@ -50,6 +50,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewDelivery(object sender, EventArgs e)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             DeliveryDataGrid.UnselectAll();
             ClearDeliveryInputs();
             CreationMode = true;
@@ -61,6 +66,11 @@ namespace VeatUAM.MVVM.Views
 
         public void DeliverySubmit(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             if (CreationMode)
             {
                 NewDeliverySubmit();
@@ -73,6 +83,11 @@ namespace VeatUAM.MVVM.Views
 
         public void DeliveryDelete(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             var viewModel = (DeliveryViewModel) DataContext;
             viewModel.DeleteDelivery(SelectedDelivery.Id);
             ActionDelivery.Text = $"Delivery {SelectedDelivery.Id} deleted";

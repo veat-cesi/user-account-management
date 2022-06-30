@@ -47,6 +47,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewSalesUser(object sender, EventArgs e)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             SalesUserDataGrid.UnselectAll();
             ClearSalesUserInputs();
             CreationMode = true;
@@ -58,6 +63,11 @@ namespace VeatUAM.MVVM.Views
 
         public void SalesUserSubmit(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             if (CreationMode)
             {
                 NewSalesUserSubmit();
@@ -70,6 +80,11 @@ namespace VeatUAM.MVVM.Views
 
         public void SalesUserDelete(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             var viewModel = (SalesUserViewModel) DataContext;
             viewModel.DeleteSalesUser(SelectedSalesUser.Id);
             ActionSalesUser.Text = $"SalesUser {SelectedSalesUser.Id} deleted";

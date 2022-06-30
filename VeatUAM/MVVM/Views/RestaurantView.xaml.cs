@@ -47,6 +47,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewRestaurant(object sender, EventArgs e)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             RestaurantDataGrid.UnselectAll();
             ClearRestaurantInputs();
             CreationMode = true;
@@ -58,6 +63,11 @@ namespace VeatUAM.MVVM.Views
 
         public void RestaurantSubmit(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             if (CreationMode)
             {
                 NewRestaurantSubmit();
@@ -70,6 +80,11 @@ namespace VeatUAM.MVVM.Views
 
         public void RestaurantDelete(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             var viewModel = (RestaurantViewModel) DataContext;
             viewModel.DeleteRestaurant(SelectedRestaurant.Id);
             ActionRestaurant.Text = $"Restaurant {SelectedRestaurant.Id} deleted";

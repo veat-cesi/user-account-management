@@ -11,6 +11,7 @@ namespace VeatUAM
     {
         public LoginWindow()
         {
+            MySqlConnectionService.Connection.Open();
             WpfSingleInstance.Make("Veat UAM - Login", uniquePerUser: false);
             InitializeComponent();
         }
@@ -30,19 +31,29 @@ namespace VeatUAM
 
         private void SubmitLogin(object sender, RoutedEventArgs routedEventArgs)
         {
-            MySqlConnectionService.Connection.Open();
             if (!MySqlConnectionService.ConnectionState()) return;
             var query = $"SELECT email, password, role, firstName FROM tech WHERE email = '{LoginEmail.Text}';";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.SetupReader();
             while (MySqlConnectionService.Reader.Read())
             {
-                if (!PasswordEncoderService.VerifyPassword(LoginPassword.Password, MySqlConnectionService.Reader.GetString(1))) continue;
+                if (!PasswordEncoderService.VerifyPassword(LoginPassword.Password,
+                        MySqlConnectionService.Reader.GetString(1)))
+                {
+                    MessageBox.Show("Wrong Password");
+                    MySqlConnectionService.Reader.Close();
+                    return;
+                }
                 AuthenticationService.Email = LoginEmail.Text;
                 AuthenticationService.Role = MySqlConnectionService.Reader.GetString(2);
                 AuthenticationService.FirstName = MySqlConnectionService.Reader.GetString(3);
                 AuthenticationService.Connected = true;
-                break;
+            }
+            if (!AuthenticationService.Connected)
+            {
+                MySqlConnectionService.Reader.Close();
+                MessageBox.Show($"Unfound user with this email : {LoginEmail.Text}");
+                return;
             }
             MySqlConnectionService.Reader.Close();
             var mainWindow = new MainWindow();

@@ -47,6 +47,11 @@ namespace VeatUAM.MVVM.Views
         
         private void NewDeveloper(object sender, EventArgs e)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             DeveloperDataGrid.UnselectAll();
             ClearDeveloperInputs();
             CreationMode = true;
@@ -60,6 +65,11 @@ namespace VeatUAM.MVVM.Views
         {
             if (CreationMode)
             {
+                if (AuthenticationService.Role.Equals("user"))
+                {
+                    PermissionService.Permission(false);
+                    return;
+                }
                 NewDeveloperSubmit();
             }
             else
@@ -70,6 +80,11 @@ namespace VeatUAM.MVVM.Views
 
         public void DeveloperDelete(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (AuthenticationService.Role.Equals("user"))
+            {
+                PermissionService.Permission(false);
+                return;
+            }
             var viewModel = (DeveloperViewModel) DataContext;
             viewModel.DeleteDeveloper(SelectedDeveloper.Id);
             ActionDeveloper.Text = $"Developer {SelectedDeveloper.Id} deleted";
