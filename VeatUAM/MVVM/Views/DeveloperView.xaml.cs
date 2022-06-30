@@ -87,7 +87,8 @@ namespace VeatUAM.MVVM.Views
             if (PasswordConfirmation() == false)
             {
                 ActionDeveloper.Text = "Password do not match";
-                throw new Exception("Password do not match");
+                MessageBox.Show("Password do not match");
+                return;
             }
             var submitedDeveloper = new DeveloperModel(
                 firstName:InputDeveloperFirstName.Text,
@@ -114,7 +115,8 @@ namespace VeatUAM.MVVM.Views
                 if (PasswordConfirmation() == false)
                 {
                     ActionDeveloper.Text = "Password do not match";
-                    throw new Exception("Password do not match");
+                    MessageBox.Show("Password do not match");
+                    return;
                 }
                 submittedDeveloper = new DeveloperModel(
                     id: SelectedDeveloper.Id,

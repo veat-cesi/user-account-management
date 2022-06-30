@@ -90,7 +90,8 @@ namespace VeatUAM.MVVM.Views
             if (PasswordConfirmation() == false)
             {
                 ActionDelivery.Text = "Password do not match";
-                throw new Exception("Password do not match");
+                MessageBox.Show("Password do not match");
+                return;
             }
             var submitedDelivery = new DeliveryModel(
                 InputDeliveryFirstName.Text,
@@ -117,7 +118,8 @@ namespace VeatUAM.MVVM.Views
                 if (PasswordConfirmation() == false)
                 {
                     ActionDelivery.Text = "Password do not match";
-                    throw new Exception("Password do not match");
+                    MessageBox.Show("Password do not match");
+                    return;
                 }
                 submittedDelivery = new DeliveryModel(
                     id: SelectedDelivery.Id,

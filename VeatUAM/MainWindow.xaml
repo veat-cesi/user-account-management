@@ -83,6 +83,7 @@
                                  Foreground="#E1E1E1"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding DeveloperViewCommand}"
                                  FontFamily="Fonts/#Poppins"/>
                     
                     <RadioButton Content="Restaurants"

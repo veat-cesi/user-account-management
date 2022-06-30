@@ -165,24 +165,25 @@ namespace VeatUAM.MVVM.ViewModels
 
         private bool IsUniqueEmail(string email)
         {
-            const string query = "SELECT email FROM customer WHERE email = @email;";
+            const string query = "SELECT COUNT(email) FROM customer WHERE email LIKE @email;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add("@email", SqlDbType.VarChar, 255).Value = email;
             MySqlConnectionService.SetupReader();
-            if (MySqlConnectionService.Reader.FieldCount == 0)
+            while (MySqlConnectionService.Reader.Read())
             {
-                MySqlConnectionService.Reader.Close();
-                return true;
+                if (MySqlConnectionService.Reader.GetInt32(0) == 0)
+                {
+                    MySqlConnectionService.Reader.Close();
+                    return true;
+                }
+                else if (MySqlConnectionService.Reader.GetInt32(0) > 0)
+                {
+                    MySqlConnectionService.Reader.Close();
+                    return false;
+                }
             }
-
-            if (MySqlConnectionService.Reader.FieldCount > 0)
-            {
-                MySqlConnectionService.Reader.Close();
-                return false;
-            }
-
             MySqlConnectionService.Reader.Close();
-            throw new Exception("Negative Reader FieldCount");
+            throw new Exception("Error occured when searching for matching emails count");
         }
         
     }

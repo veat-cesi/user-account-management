@@ -23,7 +23,7 @@ namespace VeatUAM.MVVM.ViewModels
         {
             Developers = new List<DeveloperModel>();
             const string query =
-                "SELECT id, firstName, lastName, email, phone, createdAt, updatedAt, deleted FROM delivery";
+                "SELECT id, firstName, lastName, email, phone, createdAt, updatedAt, deleted FROM dev";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.SetupReader();
             while (MySqlConnectionService.Reader.Read())
@@ -46,7 +46,7 @@ namespace VeatUAM.MVVM.ViewModels
             if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null &&
                 d.Password == null && d.Deleted)
             {
-                MessageBox.Show("Invalid delivery model");
+                MessageBox.Show("Invalid dev model");
                 return;
             }
             
@@ -58,7 +58,7 @@ namespace VeatUAM.MVVM.ViewModels
             try
             {
                 const string query =
-                    "INSERT INTO delivery (firstName, lastName, email, phone, password, createdAt, updatedAt, deleted, deletedAt) VALUES (@first_name, @last_name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
+                    "INSERT INTO dev (firstName, lastName, email, phone, password, createdAt, updatedAt, deleted, deletedAt) VALUES (@first_name, @last_name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
                 MySqlConnectionService.SetupQuery(query);
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255))
                     .Value = d.FirstName;
@@ -90,7 +90,7 @@ namespace VeatUAM.MVVM.ViewModels
             if (d == null) return;
             if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null && d.Deleted)
             {
-                MessageBox.Show("Invalid delivery model");
+                MessageBox.Show("Invalid dev model");
                 return;
             }
             
@@ -104,7 +104,7 @@ namespace VeatUAM.MVVM.ViewModels
                 string query;
                 if (!string.IsNullOrWhiteSpace(d.Password))
                 {
-                    query = "UPDATE delivery SET " +
+                    query = "UPDATE dev SET " +
                             "firstName = @first_name, lastName = @last_name, email = @email, phone = @phone, " +
                             "password = @password, updatedAt = @updated_at " +
                             "WHERE id = @id;";
@@ -127,7 +127,7 @@ namespace VeatUAM.MVVM.ViewModels
                 }
                 else
                 {
-                    query = "UPDATE delivery SET " +
+                    query = "UPDATE dev SET " +
                             "firstName = @first_name, lastName = @last_name, email = @email, phone = @phone, " +
                             "updatedAt = @updated_at " +
                             "WHERE id = @id;";
@@ -156,7 +156,7 @@ namespace VeatUAM.MVVM.ViewModels
 
         public void DeleteDeveloper(int id)
         {
-            const string query = "UPDATE delivery SET deleted = @deleted, deletedAt = @deleted_at WHERE id = @id;";
+            const string query = "UPDATE dev SET deleted = @deleted, deletedAt = @deleted_at WHERE id = @id;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int))
                 .Value = id;
@@ -178,25 +178,25 @@ namespace VeatUAM.MVVM.ViewModels
         
         private bool IsUniqueEmail(string email)
         {
-            const string query = "SELECT email FROM delivery WHERE email = @email;";
+            const string query = "SELECT COUNT(email) FROM dev WHERE email LIKE @email;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add("@email", SqlDbType.VarChar, 255).Value = email;
             MySqlConnectionService.SetupReader();
-            
-            if (MySqlConnectionService.Reader.FieldCount == 0)
+            while (MySqlConnectionService.Reader.Read())
             {
-                MySqlConnectionService.Reader.Close();
-                return true;
+                if (MySqlConnectionService.Reader.GetInt32(0) == 0)
+                {
+                    MySqlConnectionService.Reader.Close();
+                    return true;
+                }
+                else if (MySqlConnectionService.Reader.GetInt32(0) > 0)
+                {
+                    MySqlConnectionService.Reader.Close();
+                    return false;
+                }
             }
-
-            if (MySqlConnectionService.Reader.FieldCount > 0)
-            {
-                MySqlConnectionService.Reader.Close();
-                return false;
-            }
-
             MySqlConnectionService.Reader.Close();
-            throw new Exception("Negative Reader FieldCount");
+            throw new Exception("Error occured when searching for matching emails count");
         }
     }
 }

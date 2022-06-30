@@ -84,12 +84,13 @@ namespace VeatUAM.MVVM.Views
             if (string.IsNullOrWhiteSpace(InputCustomerPassword.Password))
             {
                 MessageBox.Show("Password input is empty!");
-                throw new NullReferenceException("PasswordBox.Password is null");
+                return;
             }
             if (PasswordConfirmation() == false)
             {
                 ActionCustomer.Text = "Password do not match";
-                throw new Exception("Password do not match");
+                MessageBox.Show("Password do not match");
+                return;
             }
             var submitedCustomer = new CustomerModel(
                 InputCustomerFirstName.Text,
@@ -116,7 +117,8 @@ namespace VeatUAM.MVVM.Views
                 if (PasswordConfirmation() == false)
                 {
                     ActionCustomer.Text = "Password do not match";
-                    throw new Exception("Password do not match");
+                    MessageBox.Show("Password do not match");
+                    return;
                 }
                 submittedCustomer = new CustomerModel(
                     id: SelectedCustomer.Id,
