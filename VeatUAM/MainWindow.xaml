@@ -91,6 +91,7 @@
                                  Foreground="#E1E1E1"
                                  FontSize="14"
                                  Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding RestaurantViewCommand}"
                                  FontFamily="Fonts/#Poppins"/>
                     
                     <RadioButton Content="Commercial"

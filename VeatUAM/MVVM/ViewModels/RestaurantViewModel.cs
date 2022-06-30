@@ -8,49 +8,48 @@ using VeatUAM.MVVM.Models;
 
 namespace VeatUAM.MVVM.ViewModels
 {
-    public class DeveloperViewModel : ObservableObject
+    public class RestaurantViewModel
     {
-        public string head = "Developers";
+        public string head = "Restaurants";
 
-        public DeveloperViewModel()
+        public RestaurantViewModel()
         {
-            InitDevelopers();
+            InitRestaurants();
         }
 
-        public IList<DeveloperModel> Developers { get; set; }
+        public IList<RestaurantModel> Restaurants { get; set; }
 
-        private void InitDevelopers()
+        private void InitRestaurants()
         {
-            Developers = new List<DeveloperModel>();
+            Restaurants = new List<RestaurantModel>();
             const string query =
-                "SELECT id, firstName, lastName, email, phone, createdAt, updatedAt, deleted FROM dev";
+                "SELECT id, name, email, phone, createdAt, updatedAt, deleted FROM restaurant";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.SetupReader();
             while (MySqlConnectionService.Reader.Read())
-                Developers.Add(new DeveloperModel(
-                    MySqlConnectionService.Reader.GetInt32(0),
-                    MySqlConnectionService.Reader.GetString(1),
-                    MySqlConnectionService.Reader.GetString(2),
-                    MySqlConnectionService.Reader.GetString(3),
-                    MySqlConnectionService.Reader.GetString(4),
-                    MySqlConnectionService.Reader.GetDateTimeOffset(5),
-                    MySqlConnectionService.Reader.GetDateTimeOffset(6),
-                    MySqlConnectionService.Reader.GetBoolean(7)
+                Restaurants.Add(new RestaurantModel(
+                    id:MySqlConnectionService.Reader.GetInt32(0),
+                    name:MySqlConnectionService.Reader.GetString(1),
+                    email:MySqlConnectionService.Reader.GetString(2),
+                    phone:MySqlConnectionService.Reader.GetString(3),
+                    createdAt:MySqlConnectionService.Reader.GetDateTimeOffset(4),
+                    updatedAt:MySqlConnectionService.Reader.GetDateTimeOffset(5),
+                    deleted:MySqlConnectionService.Reader.GetBoolean(6)
                 ));
             MySqlConnectionService.Reader.Close();
         }
 
-        public void CreateDeveloper(DeveloperModel d)
+        public void CreateRestaurant(RestaurantModel r)
         {
-            if (d == null) return;
-            if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null &&
-                d.Password == null && d.Deleted)
+            if (r == null) return;
+            if (r.Name == null && r.Email == null && r.Phone == null &&
+                r.Password == null && r.Deleted)
             {
-                MessageBox.Show("Invalid dev model");
+                MessageBox.Show("Invalid restaurant model");
                 return;
             }
             
-            if (!IsUniqueEmail(d.Email))
+            if (!IsUniqueEmail(r.Email))
             {
                 MessageBox.Show("Email already in database!");
                 return;
@@ -58,26 +57,24 @@ namespace VeatUAM.MVVM.ViewModels
             try
             {
                 const string query =
-                    "INSERT INTO dev (firstName, lastName, email, phone, password, createdAt, updatedAt, deleted, deletedAt) VALUES (@first_name, @last_name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
+                    "INSERT INTO restaurant (name, email, phone, password, createdAt, updatedAt, deleted, deletedAt) VALUES (@name, @email, @phone, @password, @created_at, @updated_at, @deleted, NULL)";
                 MySqlConnectionService.SetupQuery(query);
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255))
-                    .Value = d.FirstName;
-                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255))
-                    .Value = d.LastName;
+                MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@name", SqlDbType.VarChar, 255))
+                    .Value = r.Name;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
-                    .Value = d.Email;
+                    .Value = r.Email;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
-                    .Value = d.Phone;
+                    .Value = r.Phone;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255))
-                    .Value = d.Password;
+                    .Value = r.Password;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@created_at", SqlDbType.DateTimeOffset))
-                    .Value = d.CreatedAt;
+                    .Value = r.CreatedAt;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset))
-                    .Value = d.UpdatedAt;
+                    .Value = r.UpdatedAt;
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value =
-                    d.Deleted;
+                    r.Deleted;
                 MySqlConnectionService.Command.ExecuteNonQuery();
-                InitDevelopers();
+                InitRestaurants();
             }
             catch (SqlException ex)
             {
@@ -85,16 +82,16 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void EditDeveloper(DeveloperModel d)
+        public void EditRestaurant(RestaurantModel r)
         {
-            if (d == null) return;
-            if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null && d.Deleted)
+            if (r == null) return;
+            if (r.Name == null && r.Email == null && r.Phone == null && r.Deleted)
             {
-                MessageBox.Show("Invalid dev model");
+                MessageBox.Show("Invalid restaurant model");
                 return;
             }
             
-            if (!IsUniqueEmail(d.Email))
+            if (!IsUniqueEmail(r.Email))
             {
                 MessageBox.Show("Email already in database!");
                 return;
@@ -102,51 +99,47 @@ namespace VeatUAM.MVVM.ViewModels
             try
             {
                 string query;
-                if (!string.IsNullOrWhiteSpace(d.Password))
+                if (!string.IsNullOrWhiteSpace(r.Password))
                 {
-                    query = "UPDATE dev SET " +
-                            "firstName = @first_name, lastName = @last_name, email = @email, phone = @phone, " +
+                    query = "UPDATE restaurant SET " +
+                            "name = @name, email = @email, phone = @phone, " +
                             "password = @password, updatedAt = @updated_at " +
                             "WHERE id = @id;";
                     MySqlConnectionService.SetupQuery(query);
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar, 255))
-                        .Value = d.Password;
+                        .Value = r.Password;
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int, 4)).Value =
-                        d.Id;
+                        r.Id;
                     MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
-                    MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
+                        .Add(new SqlParameter("@name", SqlDbType.VarChar, 255)).Value = r.Name;
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
-                        .Value = d.Email;
+                        .Value = r.Email;
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
-                        .Value = d.Phone;
+                        .Value = r.Phone;
                     MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
+                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = r.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
                 else
                 {
-                    query = "UPDATE dev SET " +
-                            "firstName = @first_name, lastName = @last_name, email = @email, phone = @phone, " +
+                    query = "UPDATE restaurant SET " +
+                            "name = @name, email = @email, phone = @phone, " +
                             "updatedAt = @updated_at " +
                             "WHERE id = @id;";
                     MySqlConnectionService.SetupQuery(query);
-                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = d.Id;
+                    MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = r.Id;
                     MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@first_name", SqlDbType.VarChar, 255)).Value = d.FirstName;
-                    MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@last_name", SqlDbType.VarChar, 255)).Value = d.LastName;
+                        .Add(new SqlParameter("@name", SqlDbType.VarChar, 255)).Value = r.Name;
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar, 255))
-                        .Value = d.Email;
+                        .Value = r.Email;
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@phone", SqlDbType.VarChar, 255))
-                        .Value = d.Phone;
+                        .Value = r.Phone;
                     MySqlConnectionService.Command.Parameters
-                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = d.UpdatedAt;
+                        .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = r.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
 
-                InitDevelopers();
+                InitRestaurants();
             }
             catch (SqlException ex)
             {
@@ -154,9 +147,9 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void DeleteDeveloper(int id)
+        public void DeleteRestaurant(int id)
         {
-            const string query = "UPDATE dev SET deleted = @deleted, deletedAt = @deleted_at WHERE id = @id;";
+            const string query = "UPDATE restaurant SET deleted = @deleted, deletedAt = @deleted_at WHERE id = @id;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int))
                 .Value = id;
@@ -173,12 +166,12 @@ namespace VeatUAM.MVVM.ViewModels
                 MessageBox.Show(ex.Message);
             }
 
-            InitDevelopers();
+            InitRestaurants();
         }
         
         private bool IsUniqueEmail(string email)
         {
-            const string query = "SELECT COUNT(email) FROM dev WHERE email LIKE @email;";
+            const string query = "SELECT COUNT(email) FROM restaurant WHERE email LIKE @email;";
             MySqlConnectionService.SetupQuery(query);
             MySqlConnectionService.Command.Parameters.Add("@email", SqlDbType.VarChar, 255).Value = email;
             MySqlConnectionService.SetupReader();

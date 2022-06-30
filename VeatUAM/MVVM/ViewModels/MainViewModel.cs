@@ -14,6 +14,8 @@ namespace VeatUAM.MVVM.ViewModels
         
         public RelayCommand DeveloperViewCommand { get; set; }
         
+        public RelayCommand RestaurantViewCommand { get; set; }
+        
         public HomeViewModel HomeVM { get; set; }
         
         public CustomerViewModel CustomerVM { get; set; }
@@ -21,6 +23,8 @@ namespace VeatUAM.MVVM.ViewModels
         public DeliveryViewModel DeliveryVM { get; set; }
         
         public DeveloperViewModel DeveloperVM { get; set; }
+        
+        public RestaurantViewModel RestaurantVM { get; set; }
         
         
         private object _currentView;
@@ -51,6 +55,7 @@ namespace VeatUAM.MVVM.ViewModels
             CustomerVM = new CustomerViewModel();
             DeliveryVM = new DeliveryViewModel();
             DeveloperVM = new DeveloperViewModel();
+            RestaurantVM = new RestaurantViewModel();
             CurrentView = HomeVM;
             CurrentHead = HomeVM.head;
 
@@ -73,11 +78,18 @@ namespace VeatUAM.MVVM.ViewModels
                 CurrentView = DeliveryVM;
                 CurrentHead = DeliveryVM?.head;
                 
-            });DeveloperViewCommand = new RelayCommand(o =>
+            });
+            DeveloperViewCommand = new RelayCommand(o =>
             {
                 
                 CurrentView = DeveloperVM;
                 CurrentHead = DeveloperVM?.head;
+            });
+            RestaurantViewCommand = new RelayCommand(o =>
+            {
+                
+                CurrentView = RestaurantVM;
+                CurrentHead = RestaurantVM?.head;
             });
         }
     }

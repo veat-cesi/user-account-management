@@ -37,6 +37,10 @@
             <DataTemplate DataType="{x:Type viewModel:DeveloperViewModel}">
                 <view:DeveloperView />
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:RestaurantViewModel}">
+                <view:RestaurantView />
+            </DataTemplate>
 
         </ResourceDictionary>
     </Application.Resources>
