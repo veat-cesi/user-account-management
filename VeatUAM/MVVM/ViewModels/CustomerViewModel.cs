@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Windows;
+using VeatUAM._Services;
 using VeatUAM.Core;
 using VeatUAM.MVVM.Models;
 
@@ -79,6 +80,7 @@ namespace VeatUAM.MVVM.ViewModels
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value = c.Deleted;
                 MySqlConnectionService.Command.ExecuteNonQuery();
                 InitCustomers();
+                LoggerService.NewLog("Created a new customer");
             }
             catch (SqlException ex)
             {
@@ -133,11 +135,13 @@ namespace VeatUAM.MVVM.ViewModels
                     MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = c.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
+                LoggerService.NewLog($"Customer ID {c.Id} updated");
                 InitCustomers();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                LoggerService.NewLog(ex.Message);
             }
         }
 
@@ -160,6 +164,7 @@ namespace VeatUAM.MVVM.ViewModels
             {
                 MessageBox.Show(ex.Message);
             }
+            LoggerService.NewLog($"Customer ID {id} deleted");
             InitCustomers();
         }
 

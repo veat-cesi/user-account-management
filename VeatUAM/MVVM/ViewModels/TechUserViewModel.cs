@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using VeatUAM._Services;
 using VeatUAM.Core;
 using VeatUAM.MVVM.Models;
 
@@ -86,6 +87,7 @@ namespace VeatUAM.MVVM.ViewModels
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value =
                     tu.Deleted;
                 MySqlConnectionService.Command.ExecuteNonQuery();
+                LoggerService.NewLog("Created a new technical user");
                 InitTechUsers();
             }
             catch (SqlException ex)
@@ -159,7 +161,7 @@ namespace VeatUAM.MVVM.ViewModels
                         .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = tu.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
-
+                LoggerService.NewLog($"Technical user at ID {tu.Id} updated");
                 InitTechUsers();
             }
             catch (SqlException ex)
@@ -186,7 +188,7 @@ namespace VeatUAM.MVVM.ViewModels
             {
                 MessageBox.Show(ex.Message);
             }
-
+            LoggerService.NewLog($"Technical user at ID {id} deleted");
             InitTechUsers();
         }
 

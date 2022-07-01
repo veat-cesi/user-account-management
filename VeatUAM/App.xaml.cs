@@ -11,6 +11,7 @@ namespace VeatUAM
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            LoggerService.NewLog("Logged out.");
             AuthenticationService.Expire();
             MySqlConnectionService.Connection.Close();
         }

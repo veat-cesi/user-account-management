@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
+using VeatUAM._Services;
 using VeatUAM.Core;
 using VeatUAM.MVVM.Models;
 
@@ -74,6 +75,7 @@ namespace VeatUAM.MVVM.ViewModels
                 MySqlConnectionService.Command.Parameters.Add(new SqlParameter("@deleted", SqlDbType.Bit)).Value =
                     r.Deleted;
                 MySqlConnectionService.Command.ExecuteNonQuery();
+                LoggerService.NewLog("Created a new restaurant");
                 InitRestaurants();
             }
             catch (SqlException ex)
@@ -138,7 +140,7 @@ namespace VeatUAM.MVVM.ViewModels
                         .Add(new SqlParameter("@updated_at", SqlDbType.DateTimeOffset)).Value = r.UpdatedAt;
                     MySqlConnectionService.Command.ExecuteNonQuery();
                 }
-
+                LoggerService.NewLog($"Restaurant ID {r.Id} updated");
                 InitRestaurants();
             }
             catch (SqlException ex)
@@ -165,7 +167,7 @@ namespace VeatUAM.MVVM.ViewModels
             {
                 MessageBox.Show(ex.Message);
             }
-
+            LoggerService.NewLog($"Restaurant ID {id} deleted");
             InitRestaurants();
         }
         

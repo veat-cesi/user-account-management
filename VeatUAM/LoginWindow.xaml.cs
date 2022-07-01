@@ -53,10 +53,12 @@ namespace VeatUAM
             {
                 MySqlConnectionService.Reader.Close();
                 MessageBox.Show($"Unfound user with this email : {LoginEmail.Text}");
+                LoggerService.NewLog("Failed to login.");
                 return;
             }
             MySqlConnectionService.Reader.Close();
             var mainWindow = new MainWindow();
+            LoggerService.NewLog("Logged successfully!");
             Close();
             mainWindow.ShowDialog();
         }

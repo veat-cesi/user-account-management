@@ -35,6 +35,9 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Deploy|AnyCPU' ">
+      <OutputPath>bin\Deploy\</OutputPath>
+    </PropertyGroup>
     <ItemGroup>
         <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
           <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
@@ -101,6 +104,7 @@
           <DependentUpon>TechUserView.xaml</DependentUpon>
         </Compile>
         <Compile Include="_Services\AuthenticationService.cs" />
+        <Compile Include="_Services\LoggerService.cs" />
         <Compile Include="_Services\MySqlConnectionService.cs" />
         <Compile Include="_Services\PasswordEncoderService.cs" />
         <Compile Include="_Services\PermissionService.cs" />
@@ -184,6 +188,7 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Assets" />
+      <Folder Include="Logs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
