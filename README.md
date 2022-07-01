@@ -8,7 +8,6 @@ L'application doit contenir les fonctionnalités suivantes :
 - Authentification SQL Server en mode mixte 
 - Une connexion pour chaque utilisateur 
 - Gestion des privilèges avec des rôles et des schémas utilisateurs
-- Journaux de transaction et système de sauvegarde
 
 ## Fonctionnalités actuelles
 
