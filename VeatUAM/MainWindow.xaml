@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Veat UAM" Height="600" Width="920"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         Background="Transparent"

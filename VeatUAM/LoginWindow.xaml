@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Veat UAM - Login" Height="450" Width="380"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         AllowsTransparency="True"
         Background="Transparent"
