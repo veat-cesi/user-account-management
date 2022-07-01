@@ -153,7 +153,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (RestaurantViewModel) DataContext;
-            viewModel.EditRestaurant(submittedRestaurant);
+            viewModel.EditRestaurant(SelectedRestaurant.Email, submittedRestaurant);
             ActionRestaurant.Text = $"Restaurant {submittedRestaurant.Id.ToString()} updated!";
             RefreshDataGrid();
         }

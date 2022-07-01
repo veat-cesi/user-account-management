@@ -84,7 +84,7 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void EditRestaurant(RestaurantModel r)
+        public void EditRestaurant(string previousEmail, RestaurantModel r)
         {
             if (r == null) return;
             if (r.Name == null && r.Email == null && r.Phone == null && r.Deleted)
@@ -93,9 +93,9 @@ namespace VeatUAM.MVVM.ViewModels
                 return;
             }
             
-            if (!IsUniqueEmail(r.Email))
+            if (!previousEmail.Equals(r.Email) && !IsUniqueEmail(r.Email))
             {
-                MessageBox.Show("Email already in database!");
+                MessageBox.Show("Email already taken!");
                 return;
             }
             try

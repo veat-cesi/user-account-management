@@ -88,7 +88,7 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void EditSalesUser(SalesUserModel su)
+        public void EditSalesUser(string previousEmail, SalesUserModel su)
         {
             if (su == null) return;
             if (su.FirstName == null && su.LastName == null && su.Email == null && su.Phone == null && su.Deleted)
@@ -97,9 +97,9 @@ namespace VeatUAM.MVVM.ViewModels
                 return;
             }
 
-            if (!IsUniqueEmail(su.Email))
+            if (!previousEmail.Equals(su.Email) && !IsUniqueEmail(su.Email))
             {
-                MessageBox.Show("Email already in database!");
+                MessageBox.Show("Email already taken!");
                 return;
             }
 

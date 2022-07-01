@@ -88,7 +88,7 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
         
-        public void EditCustomer(CustomerModel c)
+        public void EditCustomer(string previousEmail, CustomerModel c)
         {
             if (c == null) return;
             if (c.FirstName == null && c.LastName == null && c.Email == null && c.Phone == null && c.Deleted)
@@ -96,11 +96,13 @@ namespace VeatUAM.MVVM.ViewModels
                 MessageBox.Show("Invalid customer model");
                 return;
             }
-            if (!IsUniqueEmail(c.Email))
+            
+            if (!previousEmail.Equals(c.Email) && !IsUniqueEmail(c.Email))
             {
-                MessageBox.Show("Email already in database!");
+                MessageBox.Show("Email already taken!");
                 return;
             }
+            
             try
             {
                 string query;

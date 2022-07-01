@@ -7,7 +7,7 @@ namespace VeatUAM.Core
     public static class MySqlConnectionService
     {
         private const string  ConnectionString =
-            @"Data Source=localhost;" +
+            @"Data Source=10.133.130.206,1433;" +
             "Initial Catalog=VEAT_DEV;" +
             "Integrated Security=False;" +
             "User ID=sa;Password=Pass@word";

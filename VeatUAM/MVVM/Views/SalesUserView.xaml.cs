@@ -43,6 +43,8 @@ namespace VeatUAM.MVVM.Views
             InputSalesUserLastName.Text = "";
             InputSalesUserEmail.Text = "";
             InputSalesUserPhone.Text = "";
+            InputSalesUserPassword.Password = "";
+            InputSalesUserPasswordConfirm.Password = "";
         }
         
         private void NewSalesUser(object sender, EventArgs e)
@@ -156,7 +158,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (SalesUserViewModel) DataContext;
-            viewModel.EditSalesUser(submittedSalesUser);
+            viewModel.EditSalesUser(SelectedSalesUser.Email, submittedSalesUser);
             ActionSalesUser.Text = $"SalesUser {submittedSalesUser.Id.ToString()} updated!";
             RefreshDataGrid();
         }

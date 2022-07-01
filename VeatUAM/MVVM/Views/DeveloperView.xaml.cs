@@ -43,6 +43,8 @@ namespace VeatUAM.MVVM.Views
             InputDeveloperLastName.Text = "";
             InputDeveloperEmail.Text = "";
             InputDeveloperPhone.Text = "";
+            InputDeveloperPassword.Password = "";
+            InputDeveloperPasswordConfirm.Password = "";
         }
         
         private void NewDeveloper(object sender, EventArgs e)
@@ -156,7 +158,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (DeveloperViewModel) DataContext;
-            viewModel.EditDeveloper(submittedDeveloper);
+            viewModel.EditDeveloper(SelectedDeveloper.Email, submittedDeveloper);
             ActionDeveloper.Text = $"Developer {submittedDeveloper.Id.ToString()} updated!";
             RefreshDataGrid();
         }

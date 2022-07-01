@@ -46,6 +46,8 @@ namespace VeatUAM.MVVM.Views
             InputDeliveryLastName.Text = "";
             InputDeliveryEmail.Text = "";
             InputDeliveryPhone.Text = "";
+            InputDeliveryPassword.Password = "";
+            InputDeliveryPasswordConfirm.Password = "";
         }
         
         private void NewDelivery(object sender, EventArgs e)
@@ -159,7 +161,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (DeliveryViewModel) DataContext;
-            viewModel.EditDelivery(submittedDelivery);
+            viewModel.EditDelivery(SelectedDelivery.Email, submittedDelivery);
             ActionDelivery.Text = $"Delivery {submittedDelivery.Id.ToString()} updated!";
             RefreshDataGrid();
         }

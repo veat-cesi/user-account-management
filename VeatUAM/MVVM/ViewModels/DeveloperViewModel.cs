@@ -87,7 +87,7 @@ namespace VeatUAM.MVVM.ViewModels
             }
         }
 
-        public void EditDeveloper(DeveloperModel d)
+        public void EditDeveloper(string previousEmail, DeveloperModel d)
         {
             if (d == null) return;
             if (d.FirstName == null && d.LastName == null && d.Email == null && d.Phone == null && d.Deleted)
@@ -96,11 +96,12 @@ namespace VeatUAM.MVVM.ViewModels
                 return;
             }
             
-            if (!IsUniqueEmail(d.Email))
+            if (!previousEmail.Equals(d.Email) && !IsUniqueEmail(d.Email))
             {
-                MessageBox.Show("Email already in database!");
+                MessageBox.Show("Email already taken!");
                 return;
             }
+            
             try
             {
                 string query;

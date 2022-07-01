@@ -46,6 +46,8 @@ namespace VeatUAM.MVVM.Views
             InputCustomerLastName.Text = "";
             InputCustomerEmail.Text = "";
             InputCustomerPhone.Text = "";
+            InputCustomerPassword.Password = "";
+            InputCustomerPasswordConfirm.Password = "";
         }
         
         private void NewCustomer(object sender, EventArgs e)
@@ -158,7 +160,7 @@ namespace VeatUAM.MVVM.Views
                 );
             }
             var viewModel = (CustomerViewModel) DataContext;
-            viewModel.EditCustomer(submittedCustomer);
+            viewModel.EditCustomer(SelectedCustomer.Email, submittedCustomer);
             ActionCustomer.Text = $"Customer {submittedCustomer.Id.ToString()} updated!";
             RefreshDataGrid();
         }

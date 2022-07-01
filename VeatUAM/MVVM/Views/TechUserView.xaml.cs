@@ -46,7 +46,7 @@ namespace VeatUAM.MVVM.Views
             InputTechUserPhone.Text = "";
             InputTechUserPassword.Password = "";
             InputTechUserPasswordConfirm.Password = "";
-            InputTechUserRole.Text = "user";
+            InputTechUserRole.SelectedItem = "user";
         }
         
         private void NewTechUser(object sender, EventArgs e)
@@ -67,18 +67,13 @@ namespace VeatUAM.MVVM.Views
 
         public void TechUserSubmit(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (AuthenticationService.Role.Equals("user"))
-            {
-                PermissionService.Permission(false);
-                return;
-            }
-
-            switch (SelectedTechUser.Role)
+            switch (AuthenticationService.Role)
             {
                 case "user":
+                    PermissionService.Permission(false);
                     break;
                 case "admin":
-                    if (AuthenticationService.Role.Equals("admin"))
+                    if (InputTechUserRole.Text.Equals("admin"))
                     {
                         PermissionService.Permission(false);
                         return;
@@ -86,7 +81,7 @@ namespace VeatUAM.MVVM.Views
 
                     break;
                 case "superadmin":
-                    if (AuthenticationService.Role.Equals("superadmin"))
+                    if (InputTechUserRole.Text.Equals("superadmin"))
                     {
                         PermissionService.Permission(false);
                         return;
