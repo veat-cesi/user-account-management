@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace VeatUAM.Core
 {
@@ -13,7 +14,14 @@ namespace VeatUAM.Core
 
         static MySqlConnectionService()
         {
-            Connection = new SqlConnection(ConnectionString);
+            try
+            {
+                Connection = new SqlConnection(ConnectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public static SqlConnection Connection { get; }

@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlClient;
 using System.Security.Authentication.ExtendedProtection;
 using System.Windows;
 using System.Windows.Input;
@@ -11,7 +12,6 @@ namespace VeatUAM
     {
         public LoginWindow()
         {
-            MySqlConnectionService.Connection.Open();
             WpfSingleInstance.Make("Veat UAM - Login", uniquePerUser: false);
             InitializeComponent();
         }
@@ -31,6 +31,15 @@ namespace VeatUAM
 
         private void SubmitLogin(object sender, RoutedEventArgs routedEventArgs)
         {
+            try
+            {
+                MySqlConnectionService.Connection.Open();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             if (!MySqlConnectionService.ConnectionState()) return;
             var query = $"SELECT email, password, role, firstName FROM tech WHERE email = '{LoginEmail.Text}';";
             MySqlConnectionService.SetupQuery(query);
@@ -42,6 +51,7 @@ namespace VeatUAM
                 {
                     MessageBox.Show("Wrong Password");
                     MySqlConnectionService.Reader.Close();
+                    MySqlConnectionService.Connection.Close();
                     return;
                 }
                 AuthenticationService.Email = LoginEmail.Text;
@@ -52,6 +62,7 @@ namespace VeatUAM
             if (!AuthenticationService.Connected)
             {
                 MySqlConnectionService.Reader.Close();
+                MySqlConnectionService.Connection.Close();
                 MessageBox.Show($"Unfound user with this email : {LoginEmail.Text}");
                 LoggerService.NewLog("Failed to login.");
                 return;

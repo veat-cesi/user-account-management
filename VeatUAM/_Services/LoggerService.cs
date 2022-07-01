@@ -6,7 +6,7 @@ namespace VeatUAM._Services
 {
     public static class LoggerService
     {
-        private const string PATH = "../Logs/";
+        private const string PATH = "Logs/";
         private static StreamWriter streamWriter { get; set; }
         private static string FileName { get; set; }
         private static string Action { get; set; }
@@ -19,6 +19,10 @@ namespace VeatUAM._Services
             var header = $"[{todayDateTime} - {AuthenticationService.Email}]";
             try
             {
+                if (!Directory.Exists(PATH)) 
+                { 
+                    Directory.CreateDirectory(PATH); 
+                } 
                 streamWriter = new StreamWriter(PATH + FileName + ".log", true);
                 streamWriter.WriteLine($"{header} : {Action}");
                 streamWriter.Close();
